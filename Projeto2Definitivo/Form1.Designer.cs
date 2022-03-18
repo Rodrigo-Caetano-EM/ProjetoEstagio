@@ -79,7 +79,7 @@
             this.BtnAdicionar.Location = new System.Drawing.Point(641, 126);
             this.BtnAdicionar.Name = "BtnAdicionar";
             this.BtnAdicionar.Size = new System.Drawing.Size(115, 20);
-            this.BtnAdicionar.TabIndex = 11;
+            this.BtnAdicionar.TabIndex = 7;
             this.BtnAdicionar.Text = "Adicionar";
             this.BtnAdicionar.UseVisualStyleBackColor = true;
             this.BtnAdicionar.Click += new System.EventHandler(this.BtnAdicionar_Click_1);
@@ -90,7 +90,7 @@
             this.BtnLimpar.Location = new System.Drawing.Point(520, 126);
             this.BtnLimpar.Name = "BtnLimpar";
             this.BtnLimpar.Size = new System.Drawing.Size(115, 20);
-            this.BtnLimpar.TabIndex = 10;
+            this.BtnLimpar.TabIndex = 6;
             this.BtnLimpar.Text = "Limpar";
             this.BtnLimpar.UseVisualStyleBackColor = true;
             this.BtnLimpar.Click += new System.EventHandler(this.BtnLimpar_Click_1);
@@ -106,7 +106,8 @@
             this.escolhaSexo.Location = new System.Drawing.Point(22, 125);
             this.escolhaSexo.Name = "escolhaSexo";
             this.escolhaSexo.Size = new System.Drawing.Size(120, 21);
-            this.escolhaSexo.TabIndex = 9;
+            this.escolhaSexo.TabIndex = 3;
+            this.escolhaSexo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.escolhaSexo_KeyPress);
             // 
             // escolhaNascimento
             // 
@@ -115,9 +116,10 @@
             this.escolhaNascimento.Name = "escolhaNascimento";
             this.escolhaNascimento.ShortcutsEnabled = false;
             this.escolhaNascimento.Size = new System.Drawing.Size(120, 20);
-            this.escolhaNascimento.TabIndex = 8;
+            this.escolhaNascimento.TabIndex = 4;
             this.escolhaNascimento.ValidatingType = typeof(System.DateTime);
             this.escolhaNascimento.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.escolhaNascimento_TypeValidationCompleted);
+            this.escolhaNascimento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.escolhaNascimento_KeyPress);
             // 
             // txtCPF
             // 
@@ -125,7 +127,8 @@
             this.txtCPF.MaxLength = 15;
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(160, 20);
-            this.txtCPF.TabIndex = 7;
+            this.txtCPF.TabIndex = 5;
+            this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
             // 
             // labelCPF
             // 
@@ -163,7 +166,8 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.ShortcutsEnabled = false;
             this.txtNome.Size = new System.Drawing.Size(582, 20);
-            this.txtNome.TabIndex = 3;
+            this.txtNome.TabIndex = 2;
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // labelNome
             // 
@@ -196,13 +200,15 @@
             // 
             // txtBusca
             // 
+            this.txtBusca.AcceptsReturn = true;
             this.txtBusca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBusca.Location = new System.Drawing.Point(12, 200);
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(646, 20);
-            this.txtBusca.TabIndex = 1;
+            this.txtBusca.TabIndex = 8;
             this.txtBusca.TextChanged += new System.EventHandler(this.txtBusca_TextChanged);
+            this.txtBusca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusca_KeyPress);
             // 
             // BtnPesquisar
             // 
@@ -210,7 +216,7 @@
             this.BtnPesquisar.Location = new System.Drawing.Point(672, 200);
             this.BtnPesquisar.Name = "BtnPesquisar";
             this.BtnPesquisar.Size = new System.Drawing.Size(115, 20);
-            this.BtnPesquisar.TabIndex = 2;
+            this.BtnPesquisar.TabIndex = 9;
             this.BtnPesquisar.Text = "Pesquisar";
             this.BtnPesquisar.UseVisualStyleBackColor = true;
             this.BtnPesquisar.Click += new System.EventHandler(this.BtnPesquisar_Click);
@@ -231,9 +237,10 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(775, 185);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // BtnEditar
             // 
@@ -241,7 +248,7 @@
             this.BtnEditar.Location = new System.Drawing.Point(543, 419);
             this.BtnEditar.Name = "BtnEditar";
             this.BtnEditar.Size = new System.Drawing.Size(115, 23);
-            this.BtnEditar.TabIndex = 4;
+            this.BtnEditar.TabIndex = 11;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = true;
             this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click_1);
@@ -252,7 +259,7 @@
             this.BtnExcluir.Location = new System.Drawing.Point(666, 419);
             this.BtnExcluir.Name = "BtnExcluir";
             this.BtnExcluir.Size = new System.Drawing.Size(121, 23);
-            this.BtnExcluir.TabIndex = 5;
+            this.BtnExcluir.TabIndex = 12;
             this.BtnExcluir.Text = "Excluir";
             this.BtnExcluir.UseVisualStyleBackColor = true;
             this.BtnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click_1);

@@ -387,11 +387,6 @@ namespace ProjetoDeEstagio2
             }
         }
 
-        private void txtMatricula_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
         private void Form1_Resize(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Maximized)
@@ -424,22 +419,18 @@ namespace ProjetoDeEstagio2
                 {
                     column.Width = 90;
                 }
-
                 if (column.DataPropertyName == "Nome")
                 {
                     column.Width = 345;
                 }
-
                 if (column.DataPropertyName == "CPF")
                 {
                     column.Width = 100;
                 }
-
                 if (column.DataPropertyName == "Nascimento")
                 {
                     column.Width = 90;
                 }
-
                 if (column.DataPropertyName == "Sexo")
                 {
                     column.Width = 90;
@@ -474,26 +465,30 @@ namespace ProjetoDeEstagio2
         {
             bool temCampoVazio = false;
             List<string> pegaInfo = new List<string>();
-            if (txtMatricula.Text.Equals(""))
+            if (string.IsNullOrEmpty(txtMatricula.Text.Trim()))
             {
                 pegaInfo.Add("MATRICULA");
                 temCampoVazio = true;
+                txtMatricula.Focus();
             }
-            if (string.IsNullOrEmpty(txtNome.Text.TrimStart()))
+            if (string.IsNullOrEmpty(txtNome.Text.Trim()))
             {
                 pegaInfo.Add("NOME");
                 temCampoVazio = true;
+                txtNome.Focus();
             }
             if (escolhaSexo.SelectedIndex == -1)
             {
                 pegaInfo.Add("SEXO");
                 temCampoVazio = true;
+                escolhaNascimento.Focus();
             }
             string nascimento = escolhaNascimento.Text;
             if (nascimento == "  /  /")
             {
                 pegaInfo.Add("NASCIMENTO");
                 temCampoVazio = true;
+                escolhaNascimento.Focus();
             }
             if (temCampoVazio)
             {
@@ -502,7 +497,63 @@ namespace ProjetoDeEstagio2
                 return true;
             }
             return false;         
-        }       
+        }
+
+        private void txtBusca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                BtnPesquisar_Click(sender, e);
+            }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Delete)
+            {
+                BtnExcluir_Click_1(sender, e);
+            }
+        }
+        private void txtMatricula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            if (e.KeyChar == 13)
+            {
+                BtnAdicionar_Click_1(sender, e);
+            }
+        }
+
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                BtnAdicionar_Click_1(sender, e);
+            }
+        }
+
+        private void escolhaSexo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                BtnAdicionar_Click_1(sender, e);
+            }
+        }
+
+        private void escolhaNascimento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                BtnAdicionar_Click_1(sender, e);
+            }
+        }
+
+        private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                BtnAdicionar_Click_1(sender, e);
+            }
+        }
     }
 }
 
