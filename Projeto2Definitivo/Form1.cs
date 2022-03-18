@@ -15,18 +15,18 @@ namespace ProjetoDeEstagio2
         public Form1()
         {
             InitializeComponent();
-            PreencheGrid();
+            PreenchaGrid();
             BtnPesquisar.Enabled = false;
         }
 
-        public void PreencheGrid()
+        public void PreenchaGrid()
         {
             //dataGridView1.DataSource = new BindingSource();
             dataGridView1.DataSource = repositorio.GetAll().ToSortableBindingList();
             AjustaTamanhoDasColunasPersonalizado();
         }
 
-        private Aluno PreencherAluno()
+        private Aluno PreenchaAluno()
         {
             string nome = txtNome.Text.Trim().ToLower();
             TextInfo info = Thread.CurrentThread.CurrentCulture.TextInfo;
@@ -43,16 +43,16 @@ namespace ProjetoDeEstagio2
             return aluno;
         }
 
-        private void MudancaEstadoBotaoAdicionar()
+        private void MudaEstadoBotaoAdicionar()
         {
             BtnAdicionar.Text = "Adicionar";
             BtnLimpar.Text = "Limpar";
             groupBox1.Text = "Novo Aluno";
             txtMatricula.ReadOnly = false;
-            LimparCampos();
+            LimpaCampos();
         }
 
-        private void LimparCampos()
+        private void LimpaCampos()
         {
             txtMatricula.Clear();
             txtNome.Clear();
@@ -62,7 +62,7 @@ namespace ProjetoDeEstagio2
             escolhaSexo.SelectedIndex = -1;
         }
 
-        private bool ValidaCPF(string cpf)
+        private bool EhCPFValido(string cpf)
         {
             string valor = txtCPF.Text.Replace(".", "").Replace("-", "");
 
@@ -145,9 +145,9 @@ namespace ProjetoDeEstagio2
             return true;
         }
 
-        public bool Validacoes()
+        public bool EhValido()
         {
-            if (PegaCamposVazios())
+            if (TemCampoVazio())
             {
                 return false;
             }
@@ -173,7 +173,7 @@ namespace ProjetoDeEstagio2
                 return false;
             }
             int numeroDaMatricula = Convert.ToInt32(txtMatricula.Text);
-            if ((BuscaMatricula() && BtnAdicionar.Text == "Adicionar"))
+            if ((JaTemEssaMatricula() && BtnAdicionar.Text == "Adicionar"))
             {
                 MessageBox.Show("Matrícula ja cadastrada", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMatricula.Clear();
@@ -212,7 +212,7 @@ namespace ProjetoDeEstagio2
                 escolhaNascimento.Focus();
                 return false;
             }
-            if (BuscaCPF())
+            if (JaTemEsseCPF())
             {
                 MessageBox.Show("CPF já cadastrado", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCPF.Clear();
@@ -221,7 +221,7 @@ namespace ProjetoDeEstagio2
             }
             if(txtCPF.Text.Length != 0)
             {
-                if (Regex.IsMatch(txtCPF.Text, @"^[\p{L}\p{M}' \.\-]+$") || !ValidaCPF(txtCPF.Text))
+                if (Regex.IsMatch(txtCPF.Text, @"^[\p{L}\p{M}' \.\-]+$") || !EhCPFValido(txtCPF.Text))
                 {
                     MessageBox.Show("O CPF é invalido", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtCPF.Focus();
@@ -233,7 +233,7 @@ namespace ProjetoDeEstagio2
             return true;
         }
 
-        private bool BuscaCPF()
+        private bool JaTemEsseCPF()
         {
             string cpf = txtCPF.Text.Replace(".", "").Replace("-", "");
             if (cpf == String.Empty)
@@ -245,7 +245,7 @@ namespace ProjetoDeEstagio2
             return alunos.Any();
         }
 
-        private bool BuscaMatricula()
+        private bool JaTemEssaMatricula()
         {
             if (txtMatricula.Text == String.Empty)
             {
@@ -261,11 +261,11 @@ namespace ProjetoDeEstagio2
             
             try
             {
-                if (!Validacoes())
+                if (!EhValido())
                 {
                     return;
                 }
-                Aluno aluno = PreencherAluno();
+                Aluno aluno = PreenchaAluno();
 
                 if (BtnAdicionar.Text == "Adicionar")
                 {
@@ -278,10 +278,10 @@ namespace ProjetoDeEstagio2
                 }
                 if (BtnAdicionar.Text == "Modificar")
                 {
-                    MudancaEstadoBotaoAdicionar();
+                    MudaEstadoBotaoAdicionar();
                 }
-                PreencheGrid();
-                LimparCampos();
+                PreenchaGrid();
+                LimpaCampos();
             }
             catch (Exception)
             {
@@ -291,11 +291,11 @@ namespace ProjetoDeEstagio2
 
         private void BtnLimpar_Click_1(object sender, EventArgs e)
         {
-            LimparCampos();
+            LimpaCampos();
 
             if (BtnLimpar.Text == "Cancelar")
             {
-                MudancaEstadoBotaoAdicionar();
+                MudaEstadoBotaoAdicionar();
             }
         }
 
@@ -313,9 +313,7 @@ namespace ProjetoDeEstagio2
                 txtCPF.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 escolhaNascimento.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
                 escolhaSexo.SelectedItem = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-
             }
-
         }
 
         private void BtnExcluir_Click_1(object sender, EventArgs e)
@@ -329,10 +327,10 @@ namespace ProjetoDeEstagio2
                 {
                     aluno.Matricula = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
                     repositorio.Remove(aluno);
-                    PreencheGrid();
+                    PreenchaGrid();
                 }
             }
-            MudancaEstadoBotaoAdicionar();
+            MudaEstadoBotaoAdicionar();
         }
 
         private void BtnPesquisar_Click(object sender, EventArgs e)
@@ -371,7 +369,7 @@ namespace ProjetoDeEstagio2
         {
             if (txtBusca.Text.Length == 0)
             {
-                PreencheGrid();
+                PreenchaGrid();
                 BtnPesquisar.Enabled = false;
             }
             else
@@ -462,7 +460,7 @@ namespace ProjetoDeEstagio2
         {
             try
             {
-                dataGridView1.DataSource = new BindingSource();
+                // dataGridView1.DataSource = new BindingSource();
                 dataGridView1.DataSource = alunos.ToList().ToSortableBindingList();
             }
             catch (Exception)
@@ -472,7 +470,7 @@ namespace ProjetoDeEstagio2
             }
         }
 
-        public bool PegaCamposVazios()
+        public bool TemCampoVazio()
         {
             bool temCampoVazio = false;
             List<string> pegaInfo = new List<string>();
@@ -503,11 +501,8 @@ namespace ProjetoDeEstagio2
                 MessageBox.Show($"Os seguintes campos obrigatórios estão vazios: {mensagem}", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
-            return false;
-            
-        }
-
-        
+            return false;         
+        }       
     }
 }
 
