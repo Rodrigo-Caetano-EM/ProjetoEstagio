@@ -16,7 +16,7 @@ namespace EM.Repository
 
         private FbConnection CrieConexao()
         {
-            string conn = @"DataSource=localhost;Port=3054;Database=C:\Users\EscolarManager\Desktop\Nova pasta\DBPROJETO2.FB4;username=SYSDBA;password=masterkey";
+            string conn = @"DataSource=localhost;Port=3054;Database=C:\Users\EscolarManager\Documents\DataBase ProjetoForms\DBPROJETO2.FB4;username=SYSDBA;password=masterkey";
             return new FbConnection(conn);
         }
 

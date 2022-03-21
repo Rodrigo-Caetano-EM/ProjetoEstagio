@@ -184,7 +184,6 @@
             this.txtMatricula.MaxLength = 9;
             this.txtMatricula.Name = "txtMatricula";
             this.txtMatricula.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtMatricula.ShortcutsEnabled = false;
             this.txtMatricula.Size = new System.Drawing.Size(160, 20);
             this.txtMatricula.TabIndex = 1;
             this.txtMatricula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatricula_KeyPress);

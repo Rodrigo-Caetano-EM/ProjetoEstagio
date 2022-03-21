@@ -56,21 +56,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Aluno.cs" />
-    <Compile Include="Domain\EnumeradorSexo.cs" />
-    <Compile Include="Domain\IEntidade.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="EM.Domain\Aluno.cs" />
+    <Compile Include="EM.Domain\EnumeradorSexo.cs" />
+    <Compile Include="EM.Domain\IEntidade.cs" />
+    <Compile Include="EM.WindowsForms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="EM.WindowsForms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="EM.WindowsForms\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\RepositorioAbstrato.cs" />
-    <Compile Include="Repository\RepositorioAluno.cs" />
-    <Compile Include="SortableDataGridView.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <Compile Include="EM.Repository\RepositorioAbstrato.cs" />
+    <Compile Include="EM.Repository\RepositorioAluno.cs" />
+    <Compile Include="EM.WindowsForms\SortableDataGridView.cs" />
+    <EmbeddedResource Include="EM.WindowsForms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

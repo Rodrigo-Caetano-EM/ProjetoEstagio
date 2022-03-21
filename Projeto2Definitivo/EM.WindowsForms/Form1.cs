@@ -277,11 +277,12 @@ namespace ProjetoDeEstagio2
             if (BtnAdicionar.Text == "Adicionar")
             {
                 repositorio.Add(aluno);
-                MessageBox.Show("Aluno adicionado", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Aluno adicionado com sucesso", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 repositorio.Update(aluno);
+                MessageBox.Show("Aluno editado com sucesso", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (BtnAdicionar.Text == "Modificar")
             {
@@ -329,6 +330,7 @@ namespace ProjetoDeEstagio2
                 {
                     aluno.Matricula = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
                     repositorio.Remove(aluno);
+                    MessageBox.Show("Aluno excluido com sucesso", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PreenchaGrid();
                 }
             }
