@@ -46,3 +46,4 @@ C:\Users\EscolarManager\Documents\ProjetoEstagio\Projeto2Definitivo\bin\Debug\Sy
 C:\Users\EscolarManager\Documents\ProjetoEstagio\Projeto2Definitivo\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\EscolarManager\Documents\ProjetoEstagio\Projeto2Definitivo\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\EscolarManager\Documents\ProjetoEstagio\Projeto2Definitivo\obj\Debug\Projeto2Definitivo.csproj.CopyComplete
+C:\Users\EscolarManager\Documents\ProjetoEstagio\Projeto2Definitivo\obj\Debug\Projeto2Definitivo.formErro.resources

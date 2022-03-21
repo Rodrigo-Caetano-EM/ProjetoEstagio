@@ -17,16 +17,17 @@ namespace ProjetoDeEstagio2
         {
             InitializeComponent();
             PreenchaGrid();
-            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             BtnPesquisar.Enabled = false;
         }
 
         void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Trapped unhandled exception");
+            sb.AppendLine("ERRO");
             sb.AppendLine(e.Exception.ToString());
-            MessageBox.Show(sb.ToString());
+            MessageBox.Show(sb.ToString(), "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            LimpaCampos();
         }
 
         public void PreenchaGrid()
@@ -560,10 +561,3 @@ namespace ProjetoDeEstagio2
         }
     }
 }
-
-///coisas a fazer:
-///refatorar o código
-///
-
-///coisas a se estudar:
-///binding source
