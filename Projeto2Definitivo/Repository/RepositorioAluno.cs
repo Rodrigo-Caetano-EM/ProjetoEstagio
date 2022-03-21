@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace EM.Repository
 {
     public class RepositorioAluno : RepositorioAbstrato<Aluno>
-    {
+    { 
         public RepositorioAluno() { }
 
         private FbConnection CrieConexao()
@@ -22,11 +25,21 @@ namespace EM.Repository
         {
             using (FbConnection conexaoFireBird = CrieConexao())
             {
+                string sqlInsert = @"INSERT into TBALUNO (MATRICULA, NOME, CPF, NASCIMENTO, SEXO) VALUES(@matricula, @nome, @cpf, @nascimento, @sexo);";
+                var teste = conexaoFireBird;
+                var cmd = teste.CreateCommand();
+                cmd.CommandText = sqlInsert;
+                cmd.Parameters.Add("@matricula", SqlDbType.Int);
+                cmd.Parameters["@matricula"].Value = aluno.Matricula;
+                cmd.Parameters.Add("@nome", SqlDbType.VarChar);
+                cmd.Parameters["@nome"].Value = aluno.Nome;
+                cmd.Parameters.Add("@cpf", SqlDbType.VarChar);
+                cmd.Parameters["@cpf"].Value = aluno.CPF;
+                cmd.Parameters.Add("@nascimento", SqlDbType.DateTime);
+                cmd.Parameters["@nascimento"].Value = aluno.Nascimento;
+                cmd.Parameters.Add("@sexo", SqlDbType.Int);
+                cmd.Parameters["@sexo"].Value = aluno.Sexo;
                 conexaoFireBird.Open();
-                string mSQL = "INSERT into TBALUNO Values(" + aluno.Matricula + ",'" + aluno.Nome + "','" + aluno.CPF + "','" +
-                aluno.Nascimento.ToString("dd.MM.yyyy") + "','" + (int)aluno.Sexo + "')";
-
-                FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
                 cmd.ExecuteNonQuery();
             }
         }
@@ -46,14 +59,21 @@ namespace EM.Repository
         {
             using (FbConnection conexaoFireBird = CrieConexao())
             {
+                string sqlUpdate = $@"UPDATE TBALUNO SET MATRICULA = @matricula, NOME = @nome, CPF = @cpf, NASCIMENTO = @nascimento, SEXO = @sexo WHERE MATRICULA = {aluno.Matricula};";
+                var teste = conexaoFireBird;
+                var cmd = teste.CreateCommand();
+                cmd.CommandText = sqlUpdate;
+                cmd.Parameters.Add("@matricula", SqlDbType.Int);
+                cmd.Parameters["@matricula"].Value = aluno.Matricula;
+                cmd.Parameters.Add("@nome", SqlDbType.VarChar);
+                cmd.Parameters["@nome"].Value = aluno.Nome;
+                cmd.Parameters.Add("@cpf", SqlDbType.VarChar);
+                cmd.Parameters["@cpf"].Value = aluno.CPF;
+                cmd.Parameters.Add("@nascimento", SqlDbType.DateTime);
+                cmd.Parameters["@nascimento"].Value = aluno.Nascimento;
+                cmd.Parameters.Add("@sexo", SqlDbType.Int);
+                cmd.Parameters["@sexo"].Value = aluno.Sexo;
                 conexaoFireBird.Open();
-                string mSQL = "Update TBALUNO SET MATRICULA = '" + Convert.ToInt32(aluno.Matricula) +
-                                             "', NOME = '" + aluno.Nome +
-                                             "', CPF = '" + aluno.CPF +
-                                             "', NASCIMENTO= '" + aluno.Nascimento.ToString("yyyy-MM-dd") +
-                                             "', SEXO= '" + Convert.ToInt32(aluno.Sexo) + "'" +
-                                             " Where MATRICULA= " + aluno.Matricula + ";";
-                FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
                 cmd.ExecuteNonQuery();
             }
         }
@@ -68,7 +88,7 @@ namespace EM.Repository
             using (FbConnection conexaoFireBird = CrieConexao())
             {
                 conexaoFireBird.Open();
-                string consulta = "SELECT * FROM TBALUNO";
+                string consulta = "SELECT MATRICULA, NOME, CPF, NASCIMENTO, SEXO FROM TBALUNO ORDER BY MATRICULA";
                 FbCommand cmd = new FbCommand(consulta, conexaoFireBird);
                 FbDataReader dr = cmd.ExecuteReader(); // estudar
                 List<Aluno> alunos = new List<Aluno>();
@@ -95,7 +115,7 @@ namespace EM.Repository
 
         public IEnumerable<Aluno> GetByNome(string nome)
         {
-            return Get(n => n.Nome.ToUpper().Contains(nome.ToUpper())).ToList();
+           return Get(n => n.Nome.ToUpper().Contains(nome.ToUpper())).ToList();
         }
     }
 }

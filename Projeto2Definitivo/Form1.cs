@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -16,7 +17,16 @@ namespace ProjetoDeEstagio2
         {
             InitializeComponent();
             PreenchaGrid();
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             BtnPesquisar.Enabled = false;
+        }
+
+        void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Trapped unhandled exception");
+            sb.AppendLine(e.Exception.ToString());
+            MessageBox.Show(sb.ToString());
         }
 
         public void PreenchaGrid()
@@ -156,7 +166,7 @@ namespace ProjetoDeEstagio2
             DateTime dataAtual = DateTime.Now;
             int CompararDatas = DateTime.Compare(dataNascimentoMinima, dataDeTesteAluno);
             int idade = dataAtual.Year - dataDeTesteAluno.Year;
-            if (CompararDatas > 0 || dataAtual.Year < dataDeTesteAluno.Year )
+            if (CompararDatas > 0 || dataAtual.Year < dataDeTesteAluno.Year)
             {
                 MessageBox.Show("Insira uma data válida", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 escolhaNascimento.Clear();
@@ -188,7 +198,7 @@ namespace ProjetoDeEstagio2
                 txtMatricula.Focus();
                 return false;
             }
-            
+
             if (!Regex.IsMatch(txtNome.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
                 MessageBox.Show("Insira um nome valido", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -196,7 +206,7 @@ namespace ProjetoDeEstagio2
                 txtNome.Focus();
                 return false;
             }
-            
+
             if (txtNome.TextLength < 1)
             {
                 MessageBox.Show("O campo NOME precisa conter pelo menos um caracter", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -204,7 +214,7 @@ namespace ProjetoDeEstagio2
                 txtNome.Focus();
                 return false;
             }
-            
+
             else if (!escolhaNascimento.MaskCompleted)
             {
                 MessageBox.Show("A DATA DE NASCIMENTO precisa ser valida", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -219,7 +229,7 @@ namespace ProjetoDeEstagio2
                 txtCPF.Focus();
                 return false;
             }
-            if(txtCPF.Text.Length != 0)
+            if (txtCPF.Text.Length != 0)
             {
                 if (Regex.IsMatch(txtCPF.Text, @"^[\p{L}\p{M}' \.\-]+$") || !EhCPFValido(txtCPF.Text))
                 {
@@ -258,35 +268,27 @@ namespace ProjetoDeEstagio2
 
         private void BtnAdicionar_Click_1(object sender, EventArgs e)
         {
-            
-            try
+            if (!EhValido())
             {
-                if (!EhValido())
-                {
-                    return;
-                }
-                Aluno aluno = PreenchaAluno();
+                return;
+            }
+            Aluno aluno = PreenchaAluno();
 
-                if (BtnAdicionar.Text == "Adicionar")
-                {
-                    repositorio.Add(aluno);
-                    MessageBox.Show("Aluno adicionado", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    repositorio.Update(aluno);
-                }
-                if (BtnAdicionar.Text == "Modificar")
-                {
-                    MudaEstadoBotaoAdicionar();
-                }
-                PreenchaGrid();
-                LimpaCampos();
-            }
-            catch (Exception)
+            if (BtnAdicionar.Text == "Adicionar")
             {
-                MessageBox.Show("Houve um erro ao inserir os dados. Por favor insira novamente", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                repositorio.Add(aluno);
+                MessageBox.Show("Aluno adicionado", "SUCESSO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else
+            {
+                repositorio.Update(aluno);
+            }
+            if (BtnAdicionar.Text == "Modificar")
+            {
+                MudaEstadoBotaoAdicionar();
+            }
+            PreenchaGrid();
+            LimpaCampos();
         }
 
         private void BtnLimpar_Click_1(object sender, EventArgs e)
@@ -342,7 +344,7 @@ namespace ProjetoDeEstagio2
                     repositorio.GetByMatricula(Pesquisa)
                 };
                 TryExecptDaPesquisa(alunos);
-                
+
             }
             else if (repositorio.GetByNome(txtBusca.Text).Any())
             {
@@ -481,7 +483,7 @@ namespace ProjetoDeEstagio2
             {
                 pegaInfo.Add("SEXO");
                 temCampoVazio = true;
-                escolhaNascimento.Focus();
+                escolhaSexo.Focus();
             }
             string nascimento = escolhaNascimento.Text;
             if (nascimento == "  /  /")
@@ -496,7 +498,7 @@ namespace ProjetoDeEstagio2
                 MessageBox.Show($"Os seguintes campos obrigatórios estão vazios: {mensagem}", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
-            return false;         
+            return false;
         }
 
         private void txtBusca_KeyPress(object sender, KeyPressEventArgs e)
@@ -509,7 +511,7 @@ namespace ProjetoDeEstagio2
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete)
             {
                 BtnExcluir_Click_1(sender, e);
             }
