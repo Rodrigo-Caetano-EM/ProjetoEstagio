@@ -26,7 +26,7 @@ namespace ProjetoWeb.App_Start
 
         public async Task Invoke(HttpContext context)
         {
-            if (context.Request.Path.HasValue && context.Request.Path.Value.Contains("{resource}.axd/{*pathInfo}")){
+            if (context.Request.Path.HasValue && context.Request.Path.Value.Contains("favicon.ico")){
                 
                 context.Response.StatusCode = 404;
 
