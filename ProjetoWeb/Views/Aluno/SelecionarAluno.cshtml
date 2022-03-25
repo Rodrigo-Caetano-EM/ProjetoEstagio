@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProjetoWeb.Models.AlunoTeste>
+
+<p>
+    @Html.ActionLink("Adicionar Novo Aluno", "AdicionarAluno")
+</p>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Matricula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nascimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CPF)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.Matricula)
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+            <td>
+                @Html.ActionLink("Atualizar", "AtualizarAluno", new { id = item.Matricula}) |
+                @Html.ActionLink("Excluir", "ExcluirAluno", new { id = item.Matricula }, new { onclick = "return confirm('Você tem certeza que deseja excluir aluno?');" })
+            </td>
+        </tr>
+    }
+</table> 

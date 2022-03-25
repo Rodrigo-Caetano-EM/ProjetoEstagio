@@ -1,0 +1,52 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ProjetoWeb/1.0.0": {
+        "dependencies": {
+          "FirebirdSql.Data.FirebirdClient": "8.5.4",
+          "Projeto2Definitivo": "1.0.0"
+        },
+        "runtime": {
+          "ProjetoWeb.dll": {}
+        }
+      },
+      "FirebirdSql.Data.FirebirdClient/8.5.4": {
+        "runtime": {
+          "lib/net5.0/FirebirdSql.Data.FirebirdClient.dll": {
+            "assemblyVersion": "8.5.4.0",
+            "fileVersion": "8.5.4.0"
+          }
+        }
+      },
+      "Projeto2Definitivo/1.0.0": {
+        "runtime": {
+          "Projeto2Definitivo.exe": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ProjetoWeb/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FirebirdSql.Data.FirebirdClient/8.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-un2Cn89YQSFCkWc4fI2kc+9gDbm15kyiYC1UhSLW6fwYVKI2Rb2qMnZ4OJIMts80jj/syny9YZO6GONcfKZjhQ==",
+      "path": "firebirdsql.data.firebirdclient/8.5.4",
+      "hashPath": "firebirdsql.data.firebirdclient.8.5.4.nupkg.sha512"
+    },
+    "Projeto2Definitivo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

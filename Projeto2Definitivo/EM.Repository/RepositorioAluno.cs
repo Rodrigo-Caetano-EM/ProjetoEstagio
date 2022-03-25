@@ -2,16 +2,14 @@
 using ProjetoDeEstagio2;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace EM.Repository
 {
     public class RepositorioAluno : RepositorioAbstrato<Aluno>
-    { 
+    {
         public RepositorioAluno() { }
 
         private FbConnection CrieConexao()
@@ -115,7 +113,7 @@ namespace EM.Repository
 
         public IEnumerable<Aluno> GetByNome(string nome)
         {
-           return Get(n => n.Nome.ToUpper().Contains(nome.ToUpper())).ToList();
+            return Get(n => n.Nome.ToUpper().Contains(nome.ToUpper())).ToList();
         }
     }
 }

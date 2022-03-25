@@ -1,0 +1,90 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\ProjetoWeb.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\Projeto2Definitivo\\Projeto2Definitivo.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\Projeto2Definitivo\\Projeto2Definitivo.csproj",
+        "projectName": "Projeto2Definitivo",
+        "projectPath": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\Projeto2Definitivo\\Projeto2Definitivo.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\ProjetoWeb.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\ProjetoWeb.csproj",
+        "projectName": "ProjetoWeb",
+        "projectPath": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\ProjetoWeb.csproj",
+        "packagesPath": "C:\\Users\\EscolarManager\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\EscolarManager\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\Projeto2Definitivo\\Projeto2Definitivo.csproj": {
+                "projectPath": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\Projeto2Definitivo\\Projeto2Definitivo.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FirebirdSql.Data.FirebirdClient": {
+              "target": "Package",
+              "version": "[8.5.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

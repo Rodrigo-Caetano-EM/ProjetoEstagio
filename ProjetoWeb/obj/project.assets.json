@@ -1,0 +1,126 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "FirebirdSql.Data.FirebirdClient/8.5.4": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/FirebirdSql.Data.FirebirdClient.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/FirebirdSql.Data.FirebirdClient.dll": {}
+        }
+      },
+      "Projeto2Definitivo/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Projeto2Definitivo.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Projeto2Definitivo.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FirebirdSql.Data.FirebirdClient/8.5.4": {
+      "sha512": "un2Cn89YQSFCkWc4fI2kc+9gDbm15kyiYC1UhSLW6fwYVKI2Rb2qMnZ4OJIMts80jj/syny9YZO6GONcfKZjhQ==",
+      "type": "package",
+      "path": "firebirdsql.data.firebirdclient/8.5.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firebird-logo.png",
+        "firebirdsql.data.firebirdclient.8.5.4.nupkg.sha512",
+        "firebirdsql.data.firebirdclient.nuspec",
+        "lib/net48/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/net5.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/netstandard2.0/FirebirdSql.Data.FirebirdClient.dll",
+        "lib/netstandard2.1/FirebirdSql.Data.FirebirdClient.dll",
+        "license.txt",
+        "readme.txt"
+      ]
+    },
+    "Projeto2Definitivo/1.0.0": {
+      "type": "project",
+      "path": "../Projeto2Definitivo/Projeto2Definitivo.csproj",
+      "msbuildProject": "../Projeto2Definitivo/Projeto2Definitivo.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "FirebirdSql.Data.FirebirdClient >= 8.5.4",
+      "Projeto2Definitivo >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\EscolarManager\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\ProjetoWeb.csproj",
+      "projectName": "ProjetoWeb",
+      "projectPath": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\ProjetoWeb.csproj",
+      "packagesPath": "C:\\Users\\EscolarManager\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\ProjetoWeb\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\EscolarManager\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\Projeto2Definitivo\\Projeto2Definitivo.csproj": {
+              "projectPath": "C:\\Users\\EscolarManager\\Documents\\ProjetoEstagio\\Projeto2Definitivo\\Projeto2Definitivo.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "FirebirdSql.Data.FirebirdClient": {
+            "target": "Package",
+            "version": "[8.5.4, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
