@@ -46,10 +46,5 @@ namespace ProjetoDeEstagio2
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CPF);
             return hashCode;
         }
-
-        public override string ToString()
-        {
-            return $"Matrícula: {Matricula} - Nome: {Nome}";
-        }
     }
 }

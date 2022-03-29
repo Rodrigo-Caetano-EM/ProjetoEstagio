@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace EM.Repository
+namespace EMRepository
 {
     public class RepositorioAluno : RepositorioAbstrato<Aluno>
     {

@@ -1,8 +1,5 @@
 ﻿using ProjetoDeEstagio2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EM
@@ -14,7 +11,7 @@ namespace EM
         /// </summary>
         [STAThread]
         static void Main()
-        {           
+        {
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

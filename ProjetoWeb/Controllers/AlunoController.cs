@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ProjetoWeb.Models;
-using ProjetoWeb.Repository;
+﻿using EMRepository;
+using Microsoft.AspNetCore.Mvc;
 using ProjetoDeEstagio2;
 
 namespace ProjetoWeb.Controllers
 {
     public class AlunoController : Controller
     {
+        RepositorioAluno repositorioAluno = new();
         public ActionResult SelecionarAluno()
         {
-            var alunoRepository = new AlunoRepository();
             ModelState.Clear();
 
-            return View(alunoRepository.SelecionarAlunos());
+            return View(repositorioAluno.GetAll());
         }
 
         public ActionResult AdicionarAluno()
@@ -27,11 +26,9 @@ namespace ProjetoWeb.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var alunoRespository = new AlunoRepository();
-
-                    alunoRespository.AdicionarAluno(aluno);
+                    repositorioAluno.Add(aluno);
                 }
-                
+
                 return View();
             }
             catch
@@ -40,21 +37,18 @@ namespace ProjetoWeb.Controllers
             }
         }
 
-        public ActionResult AtualizarAluno(Aluno aluno)
+        public ActionResult EditAluno(Aluno aluno)
         {
-            var alunoRepository = new AlunoRepository();
+            Aluno teste = repositorioAluno.GetByMatricula(aluno.Matricula);
 
-            return View(alunoRepository.SelecionarAlunos().Where(a => a.Matricula == aluno.Matricula));
-
+            return View(teste);
         }
 
         public ActionResult ExcluirAluno(Aluno aluno)
         {
-            var alunoRepository = new AlunoRepository();
+            repositorioAluno.Remove(aluno);
 
-            alunoRepository.ExcluirAluno(aluno);
-
-            return RedirectToAction("SelecionarAlunos");
+            return RedirectToAction("SelecionarAluno");
         }
     }
 }

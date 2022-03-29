@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing;
-
-namespace ProjetoWeb.App_Start
+﻿namespace ProjetoWeb.App_Start
 {
     public class RouteConfig
     {
@@ -26,8 +24,9 @@ namespace ProjetoWeb.App_Start
 
         public async Task Invoke(HttpContext context)
         {
-            if (context.Request.Path.HasValue && context.Request.Path.Value.Contains("favicon.ico")){
-                
+            if (context.Request.Path.HasValue && context.Request.Path.Value.Contains("favicon.ico"))
+            {
+
                 context.Response.StatusCode = 404;
 
                 Console.WriteLine("Ignored!");

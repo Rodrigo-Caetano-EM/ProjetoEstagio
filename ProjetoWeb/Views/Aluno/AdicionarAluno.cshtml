@@ -1,4 +1,5 @@
-﻿@model ProjetoWeb.Models.AlunoTeste
+﻿@using ProjetoDeEstagio2
+@model Aluno
 
 @using (Html.BeginForm()) 
 {
@@ -7,7 +8,7 @@
     <div class="form-horizontal">
         <h4>Adicionar Aluno</h4>
         <div>
-            @Html.ActionLink("Voltar para Lista", "SelecionarAluno")
+            @Html.ActionLink("Ir para a lista de alunos", "SelecionarAluno")
         </div>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -51,10 +52,10 @@
                 @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br/>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default"/>
+                <input type="submit" value="Salvar"/>
             </div>
         </div>
         <div class="form-group">

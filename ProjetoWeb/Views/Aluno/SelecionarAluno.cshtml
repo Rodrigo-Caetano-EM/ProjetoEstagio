@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProjetoWeb.Models.AlunoTeste>
+﻿@using ProjetoDeEstagio2
+@model IEnumerable<Aluno>
 
 <p>
     @Html.ActionLink("Adicionar Novo Aluno", "AdicionarAluno")
@@ -26,7 +27,6 @@
 
     @foreach (var item in Model)
     {
-        @Html.HiddenFor(model => item.Matricula)
         <tr>
 
             <td>
@@ -45,8 +45,8 @@
                 @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
-                @Html.ActionLink("Atualizar", "AtualizarAluno", new { id = item.Matricula}) |
-                @Html.ActionLink("Excluir", "ExcluirAluno", new { id = item.Matricula }, new { onclick = "return confirm('Você tem certeza que deseja excluir aluno?');" })
+                @Html.ActionLink("Atualizar", "AtualizarAluno", new { matricula = item.Matricula})
+                @Html.ActionLink("Excluir", "ExcluirAluno", new { matricula = item.Matricula }, new { onclick = "return confirm('Você tem certeza que deseja excluir aluno?');" })
             </td>
         </tr>
     }
