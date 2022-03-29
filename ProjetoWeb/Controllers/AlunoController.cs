@@ -27,6 +27,7 @@ namespace ProjetoWeb.Controllers
                 if (ModelState.IsValid)
                 {
                     repositorioAluno.Add(aluno);
+                    return RedirectToAction("SelecionarAluno");
                 }
 
                 return View();
@@ -37,11 +38,26 @@ namespace ProjetoWeb.Controllers
             }
         }
 
-        public ActionResult EditAluno(Aluno aluno)
+        public ActionResult AtualizarAluno(int matricula)
         {
-            Aluno teste = repositorioAluno.GetByMatricula(aluno.Matricula);
+            Aluno teste = repositorioAluno.GetByMatricula(matricula);
 
             return View(teste);
+        }
+
+        [HttpPost]
+
+        public ActionResult AtualizarAluno([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
+        {
+            if (ModelState.IsValid)
+            {
+                repositorioAluno.Update(aluno);
+                return RedirectToAction("SelecionarAluno");
+            }
+            else
+            {
+                return View(aluno);
+            }
         }
 
         public ActionResult ExcluirAluno(Aluno aluno)

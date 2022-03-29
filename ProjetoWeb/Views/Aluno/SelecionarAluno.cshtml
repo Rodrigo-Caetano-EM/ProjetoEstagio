@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
-                @Html.ActionLink("Atualizar", "AtualizarAluno", new { matricula = item.Matricula})
+                @Html.ActionLink("Atualizar", "AtualizarAluno", new { matricula = item.Matricula}) 
                 @Html.ActionLink("Excluir", "ExcluirAluno", new { matricula = item.Matricula }, new { onclick = "return confirm('Você tem certeza que deseja excluir aluno?');" })
             </td>
         </tr>
