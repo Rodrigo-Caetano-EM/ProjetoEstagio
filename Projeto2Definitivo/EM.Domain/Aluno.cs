@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoDeEstagio2
 {
     public class Aluno : IEntidade
     {
+        [Required(ErrorMessage = "A matricula é obrigatória", AllowEmptyStrings = false)]
         public int Matricula { get; set; }
 
+        [Required(ErrorMessage = "O nome é obrigatório", AllowEmptyStrings = false)]
         public string Nome { get; set; }
-
+        
+        [StringLength(15, MinimumLength = 11)]
         public string CPF { get; set; }
 
+        [DataType(DataType.Date, ErrorMessage = "erro")]
         public DateTime Nascimento { get; set; }
 
         public EnumeradorSexo Sexo { get; set; }
