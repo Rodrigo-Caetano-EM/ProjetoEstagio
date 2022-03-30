@@ -1,5 +1,10 @@
-﻿@using ProjetoDeEstagio2
+﻿@using EMRepository
+@using ProjetoDeEstagio2
 @model IEnumerable<Aluno>
+
+@{
+    RepositorioAluno repositorioAluno = new();
+}
 
 <p>
     @Html.ActionLink("Adicionar novo Aluno", "AdicionarAluno")
@@ -46,9 +51,36 @@
             </td>
             <td>
                 @Html.ActionLink("Atualizar", "AtualizarAluno", new { matricula = item.Matricula}) 
-                @Html.ActionLink("Excluir", "ExcluirAluno", new { matricula = item.Matricula }, new { onclick = "return confirm('Você tem certeza que deseja excluir aluno?');" })
+                <button onclick="document.getElementById('id01').style.display='block'">Deletar aluno</button>
+                <div id="id01" class="modal">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <form class="modal-content" action="/action_page.php">
+                    <div class="container">
+                         <h1>Deletar Aluno</h1>
+                         <p>Você tem certeza que quer deletar o aluno?</p>
+
+                         <div class="clearfix">
+                            <button type="button" class="deletebtn">Deletar</button>
+                            <button type="button" class="cancelbtn">Cancelar</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
             </td>
         </tr>
     }
 </table>
 <input type="button" class="button" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
