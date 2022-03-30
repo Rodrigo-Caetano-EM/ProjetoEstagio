@@ -7,15 +7,19 @@ namespace ProjetoDeEstagio2
     public class Aluno : IEntidade
     {
         [Required(ErrorMessage = "A matricula é obrigatória", AllowEmptyStrings = false)]
+        [Display(Name = "Matricula do aluno")]
         public int Matricula { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório", AllowEmptyStrings = false)]
+        [Display(Name = "Nome do aluno")]
         public string Nome { get; set; }
-        
+
         [StringLength(15, MinimumLength = 11)]
+        [Display(Name = "CPF")]
         public string CPF { get; set; }
 
         [DataType(DataType.Date, ErrorMessage = "erro")]
+        [Range(typeof(DateTime), "01/01/1920", "31/12/2021", ErrorMessage = "Idade inválida")]
         public DateTime Nascimento { get; set; }
 
         public EnumeradorSexo Sexo { get; set; }
