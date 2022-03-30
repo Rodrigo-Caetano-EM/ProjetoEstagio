@@ -61,7 +61,7 @@
 
                          <div class="clearfix">
                             <button type="button" class="deletebtn">Deletar</button>
-                            <button type="button" class="cancelbtn">Cancelar</button>
+                            <button type="button" class="cancelbtn" onclick=cancelar()>Cancelar</button>
                         </div>
                     </div>
                     </form>
@@ -74,13 +74,15 @@
 
 
 <script>
-// Get the modal
 var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+
+function cancelar(){
+    modal.style.display = "none";
 }
 </script>
