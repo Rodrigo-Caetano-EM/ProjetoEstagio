@@ -7,7 +7,7 @@ namespace ProjetoWeb.Models
     public class Validacoes
     {
         RepositorioAluno repositorioAluno = new();
-        private bool EhCPFValido(string cpf)
+        public bool EhCPFValido(string cpf)
         {
             string valor = cpf.Replace(".", "").Replace("-", "");
 
@@ -140,7 +140,7 @@ namespace ProjetoWeb.Models
             }
             return true;
         }
-        private bool JaTemEsseCPF(string matricula, string cpfteste)
+        public bool JaTemEsseCPF(string matricula, string cpfteste)
         {
             string cpf = cpfteste.Replace(".", "").Replace("-", "");
             if (cpf == String.Empty)
@@ -151,7 +151,7 @@ namespace ProjetoWeb.Models
             IEnumerable<Aluno> alunos = repositorioAluno.Get(alunosCPF => alunosCPF.CPF == cpf && alunosCPF.Matricula != Convert.ToInt32(matricula));
             return alunos.Any();
         }
-        private bool JaTemEssaMatricula(string matricula)
+        public bool JaTemEssaMatricula(string matricula)
         {
             if (matricula == String.Empty)
             {

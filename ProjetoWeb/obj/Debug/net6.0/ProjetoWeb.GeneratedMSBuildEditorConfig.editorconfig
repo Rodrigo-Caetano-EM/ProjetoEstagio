@@ -23,8 +23,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cQXR1YWxpemFyQWx1bm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/ExcluirAluno.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cRXhjbHVpckFsdW5vLmNzaHRtbA==
+[C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/SelecionarAluno.cshtml]

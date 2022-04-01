@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations;
 namespace ProjetoDeEstagio2
 {
     public class Aluno : IEntidade
-    {
+    {      
         [Required(ErrorMessage = "A matricula é obrigatória", AllowEmptyStrings = false)]
-        [Display(Name = "Matricula do aluno")]
+        [Range(1, 999999999, ErrorMessage = "A matricula não pode: ter mais de 9 digitos, ser 0 ou ser negativa")]
+        [Display(Name = "Matricula")]
         public int Matricula { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório", AllowEmptyStrings = false)]
@@ -21,7 +22,7 @@ namespace ProjetoDeEstagio2
         [DataType(DataType.Date, ErrorMessage = "erro")]
         [Range(typeof(DateTime), "01/01/1920", "31/12/2021", ErrorMessage = "Idade inválida")]
         public DateTime Nascimento { get; set; }
-
+        [Display(Name = "Sexo")]
         public EnumeradorSexo Sexo { get; set; }
 
         public Aluno(int matricula, string nome, string cpf, DateTime nascimento, EnumeradorSexo sexo)

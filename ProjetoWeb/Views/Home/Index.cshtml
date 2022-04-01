@@ -8,15 +8,17 @@
     <h1 aling="center">PROJETO DE ESTAGIO WEB</h1>
     <hr/>
 
-    <h4>Coisas a se fazer</h4>
+    <h4>Coisas a se fazer:</h4>
     <ul>
-        <li>Validações dos dados <b>IMPORTANTE</b></li>
-        <li>Colocar mecanismo de pesquisa <b>IMPORTANTE</b></li>
-        <li>Estudar sobre Delete confirmed, Edit Confirmed <b>IMPORTANTE</b></li>
-        <li>Tentar colocar o dataGrid no mesmo lugar do lugar de preencher</li>
-        <li>Testes automatizados</li>
+        <li>Arrumar a pesquisa  <b>IMPORTANTE</b></li>
         <li>Deixar tudo mais bonito com css</li>
+        <li>Testes automatizados</li>
         <li></li>
         <li></li>
     </ul>
+
+    <div>
+        <input type="button" class="btn btn-primary" value="Adicionar aluno" onclick="location.href='@Url.Action("AdicionarAluno", "Aluno")'"/>
+        <input type="button" class="btn btn-primary" value="Ver lista de alunos" onclick="location.href='@Url.Action("SelecionarAluno", "Aluno")'" />
+    </div>
 </body>
