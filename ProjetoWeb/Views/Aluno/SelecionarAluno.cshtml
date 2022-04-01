@@ -13,8 +13,8 @@
     <form asp-controller="Aluno" asp-action="SelecionarAluno" method = "get">
     <p>
         Pesquisar: <input type="text" name="id" />
-        <input type="submit" value="Pesquisar" />
-        <input type="button" class="button" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
+        <input type="submit" class="btn btn-primary" value="Pesquisar" />
+        <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
     </p>
     </form>    
 </div>
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
-                <input type="button" class="btn btn-info" value="Editar" onclick="location.href='@Url.Action("AtualizarAluno", "Aluno", new {matricula = item.Matricula})'" />
+                <input type="button" class="btn btn-primary" value="Editar" onclick="location.href='@Url.Action("AtualizarAluno", "Aluno", new {matricula = item.Matricula})'" />
                 <input type="button" class="btn btn-danger" value="Excluir" onclick="location.href='@Url.Action("Delete", "Aluno", new {matricula = item.Matricula})'" />
             </td>
         </tr>
