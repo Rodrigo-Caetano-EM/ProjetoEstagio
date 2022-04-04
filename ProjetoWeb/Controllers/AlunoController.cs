@@ -27,28 +27,32 @@ namespace ProjetoWeb.Controllers
         public ActionResult AdicionarAluno(Aluno aluno)
         {
             ValidarDadosInseridos(aluno);
-            if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
+            if (validacoes.EhValido(aluno.Matricula.ToString(), aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
-                if (validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
+                if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
                 {
-                    ModelState.AddModelError("Matricula", "Matricula já inserida");
+                    if (validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
+                    {
+                        ModelState.AddModelError("Matricula", "Matricula já inserida");
+                    }
                 }
+                if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
+                {
+                    aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
+                    repositorioAluno.Add(aluno);
+                    return RedirectToAction("SelecionarAluno");
+                }
+                if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF))
+                {
+                    repositorioAluno.Add(aluno);
+                    return RedirectToAction("SelecionarAluno");
+                }
+                else
+                {
+                    return View();
+                }                
             }
-            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
-            {
-                aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
-                repositorioAluno.Add(aluno);
-                return RedirectToAction("SelecionarAluno");
-            }
-            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF))
-            {
-                repositorioAluno.Add(aluno);
-                return RedirectToAction("SelecionarAluno");
-            }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
 
@@ -79,6 +83,15 @@ namespace ProjetoWeb.Controllers
             {
                 return View(aluno);
             }
+        }
+
+        public bool ValidarSexo(Sexo sexo)
+        {
+            if(sexo.CategoriaId == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         public ActionResult Delete(Aluno aluno)
@@ -114,7 +127,6 @@ namespace ProjetoWeb.Controllers
             {
                 ModelState.AddModelError("CPF", "CPF já inserido");
             }
-
         }
         [HttpPost]
         public ActionResult SelecionarAluno(string idInserido)

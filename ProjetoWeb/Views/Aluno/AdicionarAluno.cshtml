@@ -3,11 +3,11 @@
 
 @model Aluno
 
-<link rel="stylesheet" href="StyleSheet.css">
 
 @{
     var lista = new[]
     {
+        new Sexo {CategoriaId = 0, Nome = "Selecione"},
         new Sexo {CategoriaId = 1, Nome = "Masculino"},
         new Sexo {CategoriaId = 2, Nome = "Feminino"},
     };
@@ -18,6 +18,8 @@
 {
     @Html.AntiForgeryToken()
     
+    <link rel="stylesheet" href="StyleSheet.css">
+
     <div class="form-horizontal">
         <h4>Adicionar Aluno</h4>
         <div>
@@ -33,12 +35,12 @@
                         <th>
                             @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label col-md-2" })
                             @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "9"}})
-                            @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Matricula, "*", new { @class = "text-danger" })
                         </th>
                         <th>
                             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-10" })
                             @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Nome, "*", new { @class = "text-danger" })
                         </th>
                     </tr>
                 </table>
@@ -51,19 +53,19 @@
                 <table>
                     <tr>
                         <th>
-                            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-sm" })<br>
-                            @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "btn-sm dropdown-toggle-split" })
-                            @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-sm" })
+                            @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "btn-sm dropdown-toggle-split" })<br>
+                            @Html.ValidationMessageFor(model => model.Sexo, "*", new { @class = "text-danger" })
                         </th>
                         <th>
                             @Html.LabelFor(model => model.Nascimento, htmlAttributes: new { @class = "control-label col-md-2" })
                             @Html.EditorFor(model => model.Nascimento, new { htmlAttributes = new { @class = "form-control" }})
-                            @Html.ValidationMessageFor(model => model.Nascimento, "", new { @class = "text-danger"})
+                            @Html.ValidationMessageFor(model => model.Nascimento, "*", new { @class = "text-danger"})
                         </th>
                         <th>
                             @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })          
                             @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.CPF, "*", new { @class = "text-danger"})
                         </th>
                     </tr>
                 </table>                
@@ -77,10 +79,10 @@
             <table>
                 <tr>
                     <th>
-                        <input type="submit" value="Salvar" class="btn btn-success"/>
-                        <input type="button" class="btn btn-secondary" value="Limpar" onclick="LimparCampos()" />
+                        <input type="submit" value="Salvar" class="btn btn-success" onclick="checaCamposVazios()"/>
+                        <input type="button" class="btn btn-secondary" value="Limpar" onclick="location.href='@Url.Action("AdicionarAluno", "Aluno")'" />
                     </th>
-                    <th text-align: right>
+                    <th>
                         <input type="button" class="btn btn-secondary" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
                     </th>
                 </tr>
@@ -95,13 +97,13 @@
     </div>
 }
 
-<script>
+<script type="text/javascript" language="javascript">
 
-    function LimparCampos(){
-        document.getElementById('Matricula').value='';
-        document.getElementById('Nome').value='';
-        document.getElementById('Nascimento').value='';
-        document.getElementById('CPF').value='';
+    function checaCamposVazios(){
+        if(document.getElementById("Matricula").value.length == 0){
+            alert("Campo matricula precisa ser preenchido");
+            document.getElementById("Matricula").focus();
+            return false 
+        }
     }
-
 </script>
