@@ -2,18 +2,15 @@
 @using ProjetoDeEstagio2
 @model IEnumerable<Aluno>
 
-@{
-    RepositorioAluno repositorioAluno = new();
-}
 
 <p>
     @Html.ActionLink("Adicionar novo Aluno", "AdicionarAluno")
 </p>
 <div>
-    <form asp-controller="Aluno" asp-action="SelecionarAluno" method = "get">
+    <form asp-controller="Aluno" asp-action="SelecionarAluno" method = "post">
     <p>
-        Pesquisar: <input type="text" name="id" />
-        <input type="submit" class="btn btn-primary" value="Pesquisar" />
+        Pesquisar: <input type="text" name="idInserido" />
+        <input type="submit" class="btn btn-primary" value="Pesquisar" onblur = "location.href='@Url.Action("SelecionarAluno", "Aluno")'" />
         <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
     </p>
     </form>    

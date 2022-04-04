@@ -104,7 +104,7 @@ namespace EMRepository
                 dr.Close();
                 return alunos;
             }
-        }
+        } 
 
         public Aluno GetByMatricula(int matricula)
         {

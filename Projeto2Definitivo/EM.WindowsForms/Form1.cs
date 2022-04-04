@@ -32,7 +32,6 @@ namespace ProjetoDeEstagio2
 
         public void PreenchaGrid()
         {
-            //dataGridView1.DataSource = new BindingSource();
             dataGridView1.DataSource = repositorio.GetAll().ToSortableBindingList();
             AjustaTamanhoDasColunasPersonalizado();
         }
@@ -456,7 +455,6 @@ namespace ProjetoDeEstagio2
         {
             try
             {
-                // dataGridView1.DataSource = new BindingSource();
                 dataGridView1.DataSource = alunos.ToList().ToSortableBindingList();
             }
             catch (Exception)

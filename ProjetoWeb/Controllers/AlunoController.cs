@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoDeEstagio2;
 using ProjetoWeb.Models;
-using System.Text.RegularExpressions;
 
 namespace ProjetoWeb.Controllers
 {
@@ -35,7 +34,13 @@ namespace ProjetoWeb.Controllers
                     ModelState.AddModelError("Matricula", "Matricula já inserida");
                 }
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
+            {
+                aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
+                repositorioAluno.Add(aluno);
+                return RedirectToAction("SelecionarAluno");
+            }
+            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF))
             {
                 repositorioAluno.Add(aluno);
                 return RedirectToAction("SelecionarAluno");
@@ -59,7 +64,13 @@ namespace ProjetoWeb.Controllers
         public ActionResult AtualizarAluno([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
         {
             ValidarDadosInseridos(aluno);
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
+            {
+                aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
+                repositorioAluno.Update(aluno);
+                return RedirectToAction("SelecionarAluno");
+            }
+            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF))
             {
                 repositorioAluno.Update(aluno);
                 return RedirectToAction("SelecionarAluno");
@@ -103,30 +114,44 @@ namespace ProjetoWeb.Controllers
             {
                 ModelState.AddModelError("CPF", "CPF já inserido");
             }
-            
+
         }
-        public ActionResult Index(string id, Aluno aluno)
+        [HttpPost]
+        public ActionResult SelecionarAluno(string idInserido)
         {
-            var alunosSelecionados = from a in repositorioAluno.GetAll() select a;
-
-            if (!string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(idInserido))
             {
-                alunosSelecionados = alunosSelecionados.Where(s => s.Nome.Contains(id));
-            }
+                if (int.TryParse(idInserido, out int Pesquisa))
+                {
+                    try
+                    {
+                        List<Aluno> alunos = new()
+                        {
+                            repositorioAluno.GetByMatricula(Pesquisa)
+                        };
+                        return View(alunos);
+                    }
+                    catch
+                    {
+                        return RedirectToAction("SelecionarAluno");
+                    }
+                }
+                if (repositorioAluno.GetByNome(idInserido).Any())
+                {
+                    IEnumerable<Aluno> alunos = repositorioAluno.GetByNome(idInserido);
 
-            if (!string.IsNullOrEmpty(id))
+                    return View(alunos);
+                }
+                if (!repositorioAluno.GetByNome(idInserido).Any())
+                {
+                    return RedirectToAction("SelecionarAluno");
+                }
+            }
+            else
             {
-                alunosSelecionados = alunosSelecionados.Where(s => s.Nome.Contains(id, StringComparison.InvariantCultureIgnoreCase));
-                return View(alunosSelecionados);
+                return RedirectToAction("SelecionarAluno");
             }
-
-            if (aluno.Matricula != 0)
-            {
-                alunosSelecionados = alunosSelecionados.Where(s => s.Matricula == aluno.Matricula);
-                return View(alunosSelecionados);
-            }
-
-            return View(alunosSelecionados);
+            return View();
         }
     }
 }
