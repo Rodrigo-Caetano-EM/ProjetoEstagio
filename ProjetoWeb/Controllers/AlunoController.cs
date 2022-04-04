@@ -133,7 +133,7 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        return RedirectToAction("SelecionarAluno");
+                        ModelState.AddModelError("idInserido", "Aluno não encontado");
                     }
                 }
                 if (repositorioAluno.GetByNome(idInserido).Any())

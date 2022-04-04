@@ -78,10 +78,14 @@
                 <tr>
                     <th>
                         <input type="submit" value="Salvar" class="btn btn-success"/>
+                        <input type="button" class="btn btn-secondary" value="Limpar" onclick="LimparCampos()" />
+                    </th>
+                    <th text-align: right>
                         <input type="button" class="btn btn-secondary" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
                     </th>
                 </tr>
             </table>
+
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10" style="color:green">
@@ -90,3 +94,14 @@
         </div>    
     </div>
 }
+
+<script>
+
+    function LimparCampos(){
+        document.getElementById('Matricula').value='';
+        document.getElementById('Nome').value='';
+        document.getElementById('Nascimento').value='';
+        document.getElementById('CPF').value='';
+    }
+
+</script>
