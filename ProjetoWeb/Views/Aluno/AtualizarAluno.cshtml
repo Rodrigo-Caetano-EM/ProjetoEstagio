@@ -10,6 +10,30 @@
     };
     var listaDeSexos = new SelectList(lista, "CategoriaId", "Nome", Model);
 }
+<script type="text/javascript" language="javascript">
+
+    function checaCamposVazios(){
+
+        var temCampoVazio = false;
+
+        if(document.getElementById("Matricula").value.length == 0){
+            temCampoVazio = true;
+        }               
+        if(document.getElementById("Nome").value.length == 0){
+            temCampoVazio = true;
+        }
+        if(document.getElementById("Sexo").value == 0){
+            temCampoVazio = true;
+        }
+        if(document.getElementById("Nascimento").value.length == 0){           
+            temCampoVazio = true;
+        }               
+        if (temCampoVazio){
+            alert("Preencha todos os campos obrigatórios");
+        }
+    }
+    
+</script>
 
 @using (Html.BeginForm())
 {
@@ -28,7 +52,6 @@
             @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
-                @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -36,7 +59,7 @@
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Nome, "*", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -44,8 +67,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Sexo, listaDeSexos)
-                @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Sexo, listaDeSexos)<br>
+                @Html.ValidationMessageFor(model => model.Sexo, "*", new { @class = "text-danger" })
             </div>
         </div>
         <br>
@@ -54,7 +77,7 @@
             @Html.LabelFor(model => model.Nascimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nascimento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nascimento, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Nascimento, "*", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -62,15 +85,14 @@
             @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <br/>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Atualizar" />
-                <input type="button" class="button" value="Voltar" onclick="location.href='@Url.Action("SelecionarAluno")'" />
+                <input type="submit" value="Atualizar" class="btn btn-success" onclick="checaCamposVazios()" />
+                <input type="button" class="btn btn-secondary" value="Voltar" onclick="location.href='@Url.Action("SelecionarAluno")'" />
             </div>
         </div>
 

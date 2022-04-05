@@ -26,15 +26,12 @@ namespace ProjetoWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AdicionarAluno(Aluno aluno)
         {
-            ValidarDadosInseridos(aluno);
+            ValidarCPF(aluno);
             if (validacoes.EhValido(aluno.Matricula.ToString(), aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
-                if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
+                if (validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
                 {
-                    if (validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
-                    {
-                        ModelState.AddModelError("Matricula", "Matricula já inserida");
-                    }
+                    ModelState.AddModelError("Matricula", "Matricula já inserida");
                 }
                 if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
                 {
@@ -50,11 +47,10 @@ namespace ProjetoWeb.Controllers
                 else
                 {
                     return View();
-                }                
+                }
             }
             return View();
         }
-
 
         public ActionResult AtualizarAluno(int matricula)
         {
@@ -67,7 +63,7 @@ namespace ProjetoWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AtualizarAluno([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
         {
-            ValidarDadosInseridos(aluno);
+            ValidarCPF(aluno);
             if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
             {
                 aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
@@ -87,7 +83,7 @@ namespace ProjetoWeb.Controllers
 
         public bool ValidarSexo(Sexo sexo)
         {
-            if(sexo.CategoriaId == 0)
+            if (sexo.CategoriaId == 0)
             {
                 return false;
             }
@@ -114,7 +110,7 @@ namespace ProjetoWeb.Controllers
 
             return RedirectToAction("SelecionarAluno");
         }
-        private void ValidarDadosInseridos(Aluno aluno)
+        private void ValidarCPF(Aluno aluno)
         {
             if (!string.IsNullOrEmpty(aluno.CPF))
             {
@@ -123,9 +119,13 @@ namespace ProjetoWeb.Controllers
                     ModelState.AddModelError("CPF", "CPF inválido");
                 }
             }
-            if (!string.IsNullOrEmpty(aluno.CPF) && validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
+            if (!string.IsNullOrEmpty(aluno.CPF))
             {
-                ModelState.AddModelError("CPF", "CPF já inserido");
+                if (validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
+                {
+                    ModelState.AddModelError("CPF", "CPF já inserido");
+
+                }
             }
         }
         [HttpPost]

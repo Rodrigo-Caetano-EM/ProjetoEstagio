@@ -107,10 +107,6 @@ namespace ProjetoWeb.Models
                 return false;
             }
             int numeroDaMatricula = Convert.ToInt32(matricula);
-            if (JaTemEssaMatricula(matricula))
-            {
-                return false;
-            }
 
             if (numeroDaMatricula <= 0)
             {
@@ -127,29 +123,31 @@ namespace ProjetoWeb.Models
                 return false;
             }
 
-            if (JaTemEsseCPF(matricula, cpf))
-            {
-                return false;
-            }
-            if (cpf.Length != 0)
+            if (!string.IsNullOrEmpty(cpf))
             {
                 if (Regex.IsMatch(cpf, @"^[\p{L}\p{M}' \.\-]+$") || !EhCPFValido(cpf))
+                {
+                    return false;
+                }
+                if (JaTemEsseCPF(matricula, cpf))
                 {
                     return false;
                 }
             }
             return true;
         }
-        public bool JaTemEsseCPF(string matricula, string cpfteste)
+        public bool JaTemEsseCPF(string matricula, string cpf)
         {
-            string cpf = cpfteste.Replace(".", "").Replace("-", "");
             if (cpf == String.Empty)
             {
                 return false;
             }
-
-            IEnumerable<Aluno> alunos = repositorioAluno.Get(alunosCPF => alunosCPF.CPF == cpf && alunosCPF.Matricula != Convert.ToInt32(matricula));
-            return alunos.Any();
+            else
+            {
+                string valor = cpf.Replace(".", "").Replace("-", "");
+                IEnumerable<Aluno> alunos = repositorioAluno.Get(alunosCPF => alunosCPF.CPF == cpf && alunosCPF.Matricula != Convert.ToInt32(matricula));
+                return alunos.Any();
+            }
         }
         public bool JaTemEssaMatricula(string matricula)
         {

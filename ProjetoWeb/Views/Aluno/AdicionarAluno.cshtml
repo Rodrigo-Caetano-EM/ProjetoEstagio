@@ -47,25 +47,26 @@
             </div>
         </div>
         <br>
-        <br>
         <div class="container">
             <div class="row">
                 <table>
                     <tr>
                         <th>
-                            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-sm" })
+                            <br>
+                            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-sm" })<br>
                             @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "btn-sm dropdown-toggle-split" })<br>
                             @Html.ValidationMessageFor(model => model.Sexo, "*", new { @class = "text-danger" })
                         </th>
                         <th>
-                            @Html.LabelFor(model => model.Nascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <br>
+                            @Html.LabelFor(model => model.Nascimento, htmlAttributes: new { @class = "control-label col-md-2" })<br>
                             @Html.EditorFor(model => model.Nascimento, new { htmlAttributes = new { @class = "form-control" }})
                             @Html.ValidationMessageFor(model => model.Nascimento, "*", new { @class = "text-danger"})
                         </th>
                         <th>
                             @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })          
                             @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.CPF, "*", new { @class = "text-danger"})
+                            @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger"})
                         </th>
                     </tr>
                 </table>                
@@ -100,10 +101,23 @@
 <script type="text/javascript" language="javascript">
 
     function checaCamposVazios(){
+
+        var teste = false;
+
         if(document.getElementById("Matricula").value.length == 0){
-            alert("Campo matricula precisa ser preenchido");
-            document.getElementById("Matricula").focus();
-            return false 
+            teste = true;
+        }               
+        if(document.getElementById("Nome").value.length == 0){
+            teste = true;
         }
+        if(document.getElementById("Sexo").value == 0){
+            teste = true;
+        }
+        if(document.getElementById("Nascimento").value.length == 0){           
+            teste = true;
+        }               
+        if (teste){
+            alert("Preencha todos os campos obrigatórios");
+        }                 
     }
 </script>

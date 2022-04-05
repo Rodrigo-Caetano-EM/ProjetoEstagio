@@ -7,10 +7,7 @@
 
 <h1>Excluir aluno</h1>
 
-<h3>Tem certeza que deseja excluir este aluno?</h3>
-
 <div>
-    <h4>Aluno</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -45,10 +42,12 @@
         </dd>
     </dl>
 
+    <h6>Tem certeza que deseja excluir este aluno?</h6>
+
     @using (Html.BeginForm()){
     <form asp-action="Delete">
         <input type="submit" value="Excluir" class="btn btn-danger" /> 
-        <a asp-action="Index" class="btn btn-primary">Voltar para a lista</a>
+        <input type="button" value="Voltar" class="btn btn-secondary" onclick="location.href='@Url.Action("SelecionarAluno", "Aluno")'">
     </form>
     }
 </div>
