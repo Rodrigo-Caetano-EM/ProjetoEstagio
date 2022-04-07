@@ -27,12 +27,9 @@ namespace ProjetoWeb.Controllers
         public ActionResult AdicionarAluno(Aluno aluno)
         {
             ValidarCPF(aluno);
+            ValidarMatricula(aluno);
             if (validacoes.EhValido(aluno.Matricula.ToString(), aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
-                if (validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
-                {
-                    ModelState.AddModelError("Matricula", "Matricula já inserida");
-                }
                 if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
                 {
                     aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
@@ -43,10 +40,6 @@ namespace ProjetoWeb.Controllers
                 {
                     repositorioAluno.Add(aluno);
                     return RedirectToAction("SelecionarAluno");
-                }
-                else
-                {
-                    return View();
                 }
             }
             return View();
@@ -118,13 +111,20 @@ namespace ProjetoWeb.Controllers
                 {
                     ModelState.AddModelError("CPF", "CPF inválido");
                 }
-            }
-            if (!string.IsNullOrEmpty(aluno.CPF))
-            {
                 if (validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
                 {
                     ModelState.AddModelError("CPF", "CPF já inserido");
+                }
+            }
+        }
 
+        private void ValidarMatricula(Aluno aluno)
+        {
+            if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
+            {
+                if (validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
+                {
+                    ModelState.AddModelError("Matricula", "Matricula já inserida");
                 }
             }
         }
@@ -150,20 +150,28 @@ namespace ProjetoWeb.Controllers
                 }
                 if (repositorioAluno.GetByNome(idInserido).Any())
                 {
-                    IEnumerable<Aluno> alunos = repositorioAluno.GetByNome(idInserido);
+                    try
+                    {
+                        IEnumerable<Aluno> alunos = repositorioAluno.GetByNome(idInserido);
 
-                    return View(alunos);
+                        return View(alunos);
+                    }
+                    catch
+                    {
+                        ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
+
+                    }
                 }
                 if (!repositorioAluno.GetByNome(idInserido).Any())
                 {
-                    return RedirectToAction("SelecionarAluno");
+                    ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
                 }
             }
             else
             {
-                return RedirectToAction("SelecionarAluno");
+                ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
             }
-            return View();
+            return RedirectToAction("SelecionarAluno", "Aluno");
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using ProjetoDeEstagio2;
+﻿using EMRepository;
+using ProjetoDeEstagio2;
 using System.Text.RegularExpressions;
-using EMRepository;
 
 namespace ProjetoWeb.Models
 {
@@ -155,9 +155,11 @@ namespace ProjetoWeb.Models
             {
                 return false;
             }
-
-            IEnumerable<Aluno> alunos = repositorioAluno.Get(alunosMatricula => alunosMatricula.Matricula == Convert.ToInt32(matricula));
-            return alunos.Any();
+            else
+            {
+                IEnumerable<Aluno> alunos = repositorioAluno.Get(alunosMatricula => alunosMatricula.Matricula == Convert.ToInt32(matricula));
+                return alunos.Any();
+            }
         }
     }
 }

@@ -2,32 +2,39 @@
 @using ProjetoDeEstagio2
 @model IEnumerable<Aluno>
 
+<script type="text/javascript" language="javascript">
+
+function ativarBotaoDePesquisa(){
+
+    document.getElementById("Pesquisa").addEventListener("input", function(event){
+
+        var conteudo = document.getElementById("Pesquisa").value;
+
+        if(conteudo !== null || conteudo !== ""){
+            document.getElementById("btnPesquisa").disabled = false;
+        }
+        
+        else{
+            document.getElementById("btnPesquisa").disabled = true;
+        }
+        if(conteudo == null || conteudo == "" || document.getElementById("btnPesquisa").disabled){
+            window.location.href = '@Url.Action("SelecionarAluno", "Aluno")';
+        }
+    });
+}
+
+</script>
+
 
 <p>
     @Html.ActionLink("Adicionar novo Aluno", "AdicionarAluno")
 </p>
 
-<script>
-    document.getElementById("btnPesquisa").disabled = true;
-
-    document.getElementById("Pesquisa").addEventListener("Pesquisa", function(event){
-
-        var conteudo = document.getElementById("Pesquisa").value;
-
-        if(conteudo !== null && conteudo !== ''){
-            document.getElementById("btnPesquisa").disabled = false;
-        }
-        else{
-            document.getElementById("btnPesquisa").disabled = true;
-        }
-    });
-</script>
-
 <div>
     <form asp-controller="Aluno" asp-action="SelecionarAluno" method = "post">
     <p>
-        Pesquisar: <input type="text" name="idInserido" id="Pesquisa"/>
-        <input type="submit" class="btn btn-primary" value="Pesquisar" id="btnPesquisa"/>
+        Pesquisar: <input type="text" name="idInserido" id="Pesquisa" oninput="ativarBotaoDePesquisa()"/>
+        <input type="submit" class="btn btn-primary" value="Pesquisar" id="btnPesquisa" disabled/>
         <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
     </p>
     </form>    
