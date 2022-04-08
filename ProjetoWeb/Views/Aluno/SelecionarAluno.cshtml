@@ -9,20 +9,19 @@ function ativarBotaoDePesquisa(){
     document.getElementById("Pesquisa").addEventListener("input", function(event){
 
         var conteudo = document.getElementById("Pesquisa").value;
+        var tamanhoSearchString = conteudo.lenght;
 
-        if(conteudo !== null || conteudo !== ""){
+        if(tamanhoSearchString >= 0 || conteudo != null){
             document.getElementById("btnPesquisa").disabled = false;
-        }
-        
-        else{
+        }    
+        else if(tamanhoSearchString == 0 || conteudo == null){
             document.getElementById("btnPesquisa").disabled = true;
         }
-        if(conteudo == null || conteudo == "" || document.getElementById("btnPesquisa").disabled){
+        if(conteudo == "" || conteudo == null && document.getElementById("btnPesquisa").disabled){
             window.location.href = '@Url.Action("SelecionarAluno", "Aluno")';
         }
     });
 }
-
 </script>
 
 
