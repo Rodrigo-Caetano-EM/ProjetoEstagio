@@ -7,7 +7,7 @@ namespace ProjetoWeb.Models
     public class Validacoes
     {
         RepositorioAluno repositorioAluno = new();
-        public bool EhCPFValido(string cpf)
+        public static bool EhCPFValido(string cpf)
         {
             string valor = cpf.Replace(".", "").Replace("-", "");
 
@@ -89,7 +89,7 @@ namespace ProjetoWeb.Models
             }
             return true;
         }
-        public bool EhValido(string matricula, string nome, DateTime nascimento, string cpf)
+        public bool EhValido(string nome, DateTime nascimento)
         {
             DateTime dataNascimentoMinima = new DateTime(1900, 01, 01, 00, 00, 00);
             DateTime dataDeTesteAluno = Convert.ToDateTime(nascimento);
@@ -106,12 +106,6 @@ namespace ProjetoWeb.Models
             {
                 return false;
             }
-            int numeroDaMatricula = Convert.ToInt32(matricula);
-
-            if (numeroDaMatricula <= 0)
-            {
-                return false;
-            }
 
             if (!Regex.IsMatch(nome, @"^[\p{L}\p{M}' \.\-]+$"))
             {
@@ -122,22 +116,13 @@ namespace ProjetoWeb.Models
             {
                 return false;
             }
-
-            if (!string.IsNullOrEmpty(cpf))
-            {
-                if (Regex.IsMatch(cpf, @"^[\p{L}\p{M}' \.\-]+$") || !EhCPFValido(cpf))
-                {
-                    return false;
-                }
-                if (JaTemEsseCPF(matricula, cpf))
-                {
-                    return false;
-                }
-            }
+            
             return true;
         }
-        public bool JaTemEsseCPF(string matricula, string cpf)
+        public static bool JaTemEsseCPF(string matricula, string cpf)
         {
+            RepositorioAluno repositorioAluno = new();
+
             if (cpf == String.Empty)
             {
                 return false;
@@ -149,8 +134,10 @@ namespace ProjetoWeb.Models
                 return alunos.Any();
             }
         }
-        public bool JaTemEssaMatricula(string matricula)
+        public static bool JaTemEssaMatricula(string matricula)
         {
+            RepositorioAluno repositorioAluno = new();
+
             if (matricula == String.Empty)
             {
                 return false;

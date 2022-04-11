@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoDeEstagio2;
 using ProjetoWeb.Models;
+using System.Text.RegularExpressions;
+
 
 namespace ProjetoWeb.Controllers
 {
@@ -28,7 +30,7 @@ namespace ProjetoWeb.Controllers
         {
             ValidarCPF(aluno);
             ValidarMatricula(aluno);
-            if (validacoes.EhValido(aluno.Matricula.ToString(), aluno.Nome, aluno.Nascimento, aluno.CPF))
+            if (validacoes.EhValido(aluno.Nome, aluno.Nascimento))
             {
                 if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
                 {
@@ -107,11 +109,11 @@ namespace ProjetoWeb.Controllers
         {
             if (!string.IsNullOrEmpty(aluno.CPF))
             {
-                if (!validacoes.EhCPFValido(aluno.CPF))
+                if (!Validacoes.EhCPFValido(aluno.CPF))
                 {
                     ModelState.AddModelError("CPF", "CPF inválido");
                 }
-                if (validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
+                if (Validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
                 {
                     ModelState.AddModelError("CPF", "CPF já inserido");
                 }
@@ -120,9 +122,15 @@ namespace ProjetoWeb.Controllers
 
         private void ValidarMatricula(Aluno aluno)
         {
+            int numeroDaMatricula = Convert.ToInt32(aluno.Matricula);
+
+            if (numeroDaMatricula <= 0)
+            {
+                ModelState.AddModelError("Matricula", "Matricula inválida");
+            }
             if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
             {
-                if (validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
+                if (Validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
                 {
                     ModelState.AddModelError("Matricula", "Matricula já inserida");
                 }

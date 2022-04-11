@@ -34,12 +34,12 @@
                         <th>
                             @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label col-md-2" })
                             @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "9"}})
-                            @Html.ValidationMessageFor(model => model.Matricula, "*", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Matricula, "*", new { @class = "text-danger" })<br>
                         </th>
                         <th>
                             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-10" })
                             @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Nome, "*", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Nome, "*", new { @class = "text-danger" })<br>
                         </th>
                     </tr>
                 </table>
@@ -76,7 +76,7 @@
     <br />
     <div class="container">        
         <div class = "row">
-            <table id="tableDosBotoes">
+            <table>
                 <tr>
                     <th>
                         <input type="submit" value="Salvar" class="btn btn-success" onclick="checaCamposVazios()"/>
