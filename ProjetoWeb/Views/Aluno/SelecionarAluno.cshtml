@@ -16,6 +16,7 @@ function ativarBotaoDePesquisa(){
         }    
         else if(tamanhoSearchString == 0 || conteudo == null){
             document.getElementById("btnPesquisa").disabled = true;
+            conteudo = conteudo;
         }
         if(conteudo == "" || conteudo == null && document.getElementById("btnPesquisa").disabled){
             window.location.href = '@Url.Action("SelecionarAluno", "Aluno")';
@@ -25,9 +26,7 @@ function ativarBotaoDePesquisa(){
 </script>
 
 
-<p>
-    @Html.ActionLink("Adicionar novo Aluno", "AdicionarAluno")
-</p>
+<p>@Html.ActionLink("Adicionar novo Aluno", "AdicionarAluno")</p>
 
 <div>
     <form asp-controller="Aluno" asp-action="SelecionarAluno" method = "post">

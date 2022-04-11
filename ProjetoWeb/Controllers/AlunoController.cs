@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoDeEstagio2;
 using ProjetoWeb.Models;
-using System.Text.RegularExpressions;
 
 
 namespace ProjetoWeb.Controllers
@@ -154,7 +153,7 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError(string.Empty, "Aluno não encontado");
+                        ModelState.AddModelError("Pesquisa", "Aluno não encontado");
                     }
                 }
                 if (repositorioAluno.GetByNome(idInserido).Any())
@@ -167,13 +166,13 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError(string.Empty, "Aluno não encontrado");
+                        ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
 
                     }
                 }
                 if (!repositorioAluno.GetByNome(idInserido).Any())
                 {
-                    ModelState.AddModelError(string.Empty, "Aluno não encontrado");
+                    ModelState.AddModelError(key: string.Empty, "Aluno não encontrado");
                 }
             }
             return RedirectToAction("SelecionarAluno", "Aluno");
