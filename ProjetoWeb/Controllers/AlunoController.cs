@@ -153,10 +153,10 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError("Pesquisa", "Aluno não encontado");
+                        ModelState.AddModelError(string.Empty, "Aluno não encontado");
                     }
                 }
-                if (repositorioAluno.GetByNome(idInserido).Any())
+                else if (repositorioAluno.GetByNome(idInserido).Any())
                 {
                     try
                     {
@@ -166,13 +166,13 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
+                        ModelState.AddModelError(string.Empty, "Aluno não encontrado");
 
                     }
                 }
-                if (!repositorioAluno.GetByNome(idInserido).Any())
+                else
                 {
-                    ModelState.AddModelError(key: string.Empty, "Aluno não encontrado");
+                    ModelState.AddModelError(string.Empty, "Aluno não encontrado");
                 }
             }
             return RedirectToAction("SelecionarAluno", "Aluno");
