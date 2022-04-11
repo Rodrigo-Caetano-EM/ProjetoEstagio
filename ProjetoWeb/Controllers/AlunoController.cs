@@ -105,34 +105,35 @@ namespace ProjetoWeb.Controllers
 
             return RedirectToAction("SelecionarAluno");
         }
+        [HttpPost]
         private void ValidarCPF(Aluno aluno)
         {
             if (!string.IsNullOrEmpty(aluno.CPF))
             {
                 if (!Validacoes.EhCPFValido(aluno.CPF))
                 {
-                    ModelState.AddModelError("CPF", "CPF inválido");
+                    ModelState.AddModelError(string.Empty, "CPF inválido");
                 }
                 if (Validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
                 {
-                    ModelState.AddModelError("CPF", "CPF já inserido");
+                    ModelState.AddModelError(string.Empty, "CPF já inserido");
                 }
             }
         }
-
+        [HttpPost]
         private void ValidarMatricula(Aluno aluno)
         {
             int numeroDaMatricula = Convert.ToInt32(aluno.Matricula);
 
             if (numeroDaMatricula <= 0)
             {
-                ModelState.AddModelError("Matricula", "Matricula inválida");
+                ModelState.AddModelError(string.Empty, "Matricula inválida");
             }
             if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
             {
                 if (Validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
                 {
-                    ModelState.AddModelError("Matricula", "Matricula já inserida");
+                    ModelState.AddModelError(string.Empty, "Matricula já inserida");
                 }
             }
         }
@@ -153,7 +154,7 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError("idInserido", "Aluno não encontado");
+                        ModelState.AddModelError(string.Empty, "Aluno não encontado");
                     }
                 }
                 if (repositorioAluno.GetByNome(idInserido).Any())
@@ -166,18 +167,14 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
+                        ModelState.AddModelError(string.Empty, "Aluno não encontrado");
 
                     }
                 }
                 if (!repositorioAluno.GetByNome(idInserido).Any())
                 {
-                    ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
+                    ModelState.AddModelError(string.Empty, "Aluno não encontrado");
                 }
-            }
-            else
-            {
-                ModelState.AddModelError("Pesquisa", "Aluno não encontrado");
             }
             return RedirectToAction("SelecionarAluno", "Aluno");
         }

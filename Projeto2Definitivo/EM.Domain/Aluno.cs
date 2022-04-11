@@ -12,6 +12,7 @@ namespace ProjetoDeEstagio2
         public int Matricula { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório", AllowEmptyStrings = false)]
+        [StringLength (100, ErrorMessage = "O nome não pode exceder {1} caracteres")]
         [Display(Name = "Nome do aluno")]
         public string Nome { get; set; }
 
