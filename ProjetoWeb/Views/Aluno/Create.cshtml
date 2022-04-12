@@ -19,6 +19,14 @@
 {
     @Html.AntiForgeryToken()
 
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Erro!</strong> Preencha todos os dados obrigatórios!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @*Alerta para o erro em bootstrap*@
+
     <div class="form-horizontal">
         <h4>Adicionar Aluno</h4>
         <div>
@@ -110,7 +118,7 @@
             teste = true;
         }               
         if (teste){
-            alert("Preencha todos os campos obrigatórios");
+            $('.alert').alert()
         }
     }   
 </script>
