@@ -2,36 +2,13 @@
 @using ProjetoDeEstagio2
 @model IEnumerable<Aluno>
 
-<script type="text/javascript" language="javascript">
 
-function ativarBotaoDePesquisa(){
-
-    document.getElementById("Pesquisa").addEventListener("input", function(event){
-
-        var conteudo = document.getElementById("Pesquisa").value;
-        var tamanhoSearchString = conteudo.lenght;
-
-        if(tamanhoSearchString >= 0 || conteudo != null){
-            document.getElementById("btnPesquisa").disabled = false;
-        }    
-        else if(tamanhoSearchString == 0 || conteudo == null){
-            document.getElementById("btnPesquisa").disabled = true;
-            conteudo = conteudo;
-        }
-        if(conteudo == "" || conteudo == null && document.getElementById("btnPesquisa").disabled){
-            window.location.href = '@Url.Action("SelecionarAluno", "Aluno")';
-        }
-    });
-}
-</script>
-
-
-<p>@Html.ActionLink("Adicionar novo Aluno", "AdicionarAluno")</p>
+<p>@Html.ActionLink("Adicionar novo Aluno", "Create")</p>
 
 <div>
     <form asp-controller="Aluno" asp-action="SelecionarAluno" method = "post">
     <p>
-        Pesquisar: <input type="text" name="idInserido" id="Pesquisa" oninput="ativarBotaoDePesquisa()"/>
+        Pesquisar: <input type="text" name="idInserido" id="Pesquisa"/>
         <input type="submit" class="btn btn-primary" value="Pesquisar" id="btnPesquisa" disabled/>
         <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("Index", "Home")'" />
     </p>
@@ -75,9 +52,34 @@ function ativarBotaoDePesquisa(){
                 @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
-                <input type="button" class="btn btn-primary" value="Editar" onclick="location.href='@Url.Action("AtualizarAluno", "Aluno", new {matricula = item.Matricula})'" />
+                <input type="button" class="btn btn-primary" value="Editar" onclick="location.href='@Url.Action("Edit", "Aluno", new {matricula = item.Matricula})'" />
                 <input type="button" class="btn btn-danger" value="Excluir" onclick="location.href='@Url.Action("Delete", "Aluno", new {matricula = item.Matricula})'" />
             </td>
         </tr>
     }
 </table>
+
+<script defer>
+
+    adicioneEventos();
+    function adicioneEventos()
+    {
+         document.getElementById("Pesquisa").addEventListener("input", function(event){
+
+            var conteudo = document.getElementById("Pesquisa").value;
+
+            if(conteudo != "" && conteudo != null){
+                document.getElementById("btnPesquisa").disabled = false;
+            }    
+            else if(conteudo == "" || conteudo == null){
+                document.getElementById("btnPesquisa").disabled = true;
+            }
+            if(conteudo == "" || conteudo == null && document.getElementById("btnPesquisa").disabled){
+                window.location.href = '@Url.Action("SelecionarAluno", "Aluno")';
+            }
+            
+        });
+    }
+
+
+</script>

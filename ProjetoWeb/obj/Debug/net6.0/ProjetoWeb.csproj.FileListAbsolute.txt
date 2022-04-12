@@ -5,7 +5,6 @@ C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\Pro
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\ProjetoWeb.deps.json
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\ProjetoWeb.runtimeconfig.json
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\ProjetoWeb.dll
-C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\ref\ProjetoWeb.dll
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\ProjetoWeb.pdb
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\Projeto2Definitivo.exe
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\FirebirdSql.Data.FirebirdClient.dll
@@ -273,3 +272,4 @@ C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\run
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\obj\Debug\net6.0\ProjetoWeb.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb\obj\Debug\net6.0\refint\ProjetoWeb.dll

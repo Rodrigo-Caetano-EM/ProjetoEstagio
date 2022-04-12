@@ -15,16 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\EscolarManager\Documents\ProjetoEstagio\ProjetoWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/AdicionarAluno.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cQWRpY2lvbmFyQWx1bm8uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/AtualizarAluno.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cQXR1YWxpemFyQWx1bm8uY3NodG1s
+[C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/EscolarManager/Documents/ProjetoEstagio/ProjetoWeb/Views/Aluno/SelecionarAluno.cshtml]

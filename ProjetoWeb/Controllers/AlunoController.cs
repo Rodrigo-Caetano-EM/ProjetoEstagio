@@ -18,14 +18,14 @@ namespace ProjetoWeb.Controllers
             return View(repositorioAluno.GetAll());
         }
 
-        public ActionResult AdicionarAluno()
+        public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AdicionarAluno(Aluno aluno)
+        public ActionResult Create(Aluno aluno)
         {
             ValidarCPF(aluno);
             ValidarMatricula(aluno);
@@ -46,7 +46,7 @@ namespace ProjetoWeb.Controllers
             return View();
         }
 
-        public ActionResult AtualizarAluno(int matricula)
+        public ActionResult Edit(int matricula)
         {
             Aluno teste = repositorioAluno.GetByMatricula(matricula);
 
@@ -55,7 +55,7 @@ namespace ProjetoWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AtualizarAluno([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
+        public ActionResult Edit([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
         {
             ValidarCPF(aluno);
             if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
@@ -153,7 +153,7 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError(string.Empty, "Aluno não encontado");
+                        ViewBag.Message = "Aluno não encontrado";
                     }
                 }
                 else if (repositorioAluno.GetByNome(idInserido).Any())
@@ -166,16 +166,15 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError(string.Empty, "Aluno não encontrado");
-
+                        ViewBag.Message = "Aluno não encontrado";
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Aluno não encontrado");
+                        ViewBag.Message = "Aluno não encontrado";
                 }
-            }
-            return RedirectToAction("SelecionarAluno", "Aluno");
+            }            
+            return View(repositorioAluno.GetAll());
         }
     }
 }
