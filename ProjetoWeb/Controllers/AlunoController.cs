@@ -84,6 +84,7 @@ namespace ProjetoWeb.Controllers
             return true;
         }
 
+        
         public ActionResult Delete(Aluno aluno)
         {
             Aluno alunoASerExcluido = repositorioAluno.GetByMatricula(aluno.Matricula);
@@ -139,6 +140,8 @@ namespace ProjetoWeb.Controllers
         [HttpPost]
         public ActionResult SelecionarAluno(string idInserido)
         {
+            
+            
             if (!string.IsNullOrEmpty(idInserido))
             {
                 if (int.TryParse(idInserido, out int Pesquisa))
@@ -176,5 +179,5 @@ namespace ProjetoWeb.Controllers
             }            
             return View(repositorioAluno.GetAll());
         }
-    }
+    }   
 }
