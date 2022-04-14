@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoDeEstagio2;
 using ProjetoWeb.Models;
-
+using System.Text.RegularExpressions;
 
 namespace ProjetoWeb.Controllers
 {
@@ -29,6 +29,8 @@ namespace ProjetoWeb.Controllers
         {
             ValidarCPF(aluno);
             ValidarMatricula(aluno);
+            ValidarDataNascimento(aluno);
+            ValidarNome(aluno);
             if (validacoes.EhValido(aluno.Nome, aluno.Nascimento))
             {
                 if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
@@ -58,6 +60,8 @@ namespace ProjetoWeb.Controllers
         public ActionResult Edit([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
         {
             ValidarCPF(aluno);
+            ValidarDataNascimento(aluno);
+            ValidarNome(aluno);
             if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
             {
                 aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
@@ -83,7 +87,6 @@ namespace ProjetoWeb.Controllers
             }
             return true;
         }
-
         
         public ActionResult Delete(Aluno aluno)
         {
@@ -105,6 +108,25 @@ namespace ProjetoWeb.Controllers
 
             return RedirectToAction("SelecionarAluno");
         }
+
+        private void ValidarDataNascimento(Aluno aluno)
+        {
+            DateTime dataNascimentoMinima = new DateTime(1900, 01, 01, 00, 00, 00);
+            DateTime dataDeTesteAluno = Convert.ToDateTime(aluno.Nascimento);
+            DateTime dataAtual = DateTime.Now;
+            int CompararDatas = DateTime.Compare(dataNascimentoMinima, dataDeTesteAluno);
+            int idade = dataAtual.Year - dataDeTesteAluno.Year;
+            if (CompararDatas > 0 || dataAtual.Year < dataDeTesteAluno.Year)
+            {
+                ModelState.AddModelError(String.Empty, "A data inserida é inválida");
+            }
+            int mesNascimento = Convert.ToInt32(dataDeTesteAluno.Month) + 12;
+            int mesAtual = Convert.ToInt32(dataAtual.Month) + 12;
+            if (Math.Abs(mesAtual - mesNascimento) >= 7 && idade <= 1)
+            {
+                ModelState.AddModelError(String.Empty, "Idade insuficiente");
+            }
+        }
         [HttpPost]
         private void ValidarCPF(Aluno aluno)
         {
@@ -120,6 +142,22 @@ namespace ProjetoWeb.Controllers
                 }
             }
         }
+        private void ValidarNome(Aluno aluno)
+        {
+            if (!string.IsNullOrEmpty(aluno.Nome))
+            {
+                if (!Regex.IsMatch(aluno.Nome, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    ModelState.AddModelError(string.Empty, "Nome inválido");
+                }
+
+                if (aluno.Nome.Length < 1)
+                {
+                    ModelState.AddModelError(string.Empty, "O nome precisa ser preenchido");
+                }
+            }
+        }
+
         [HttpPost]
         private void ValidarMatricula(Aluno aluno)
         {
@@ -140,8 +178,7 @@ namespace ProjetoWeb.Controllers
         [HttpPost]
         public ActionResult SelecionarAluno(string idInserido)
         {
-            
-            
+            var falha = false;
             if (!string.IsNullOrEmpty(idInserido))
             {
                 if (int.TryParse(idInserido, out int Pesquisa))
@@ -156,7 +193,7 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ViewBag.Message = "Aluno não encontrado";
+                        falha = true;
                     }
                 }
                 else if (repositorioAluno.GetByNome(idInserido).Any())
@@ -169,15 +206,19 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        ViewBag.Message = "Aluno não encontrado";
+                        falha = true;
                     }
                 }
                 else
                 {
-                        ViewBag.Message = "Aluno não encontrado";
+                        falha = true;
                 }
-            }            
-            return View(repositorioAluno.GetAll());
+            }
+            if (falha)
+            {
+                ModelState.AddModelError(string.Empty, "Aluno não encontrado");
+            }
+            return RedirectToAction("SelecionarAluno", "Aluno");
         }
     }   
 }

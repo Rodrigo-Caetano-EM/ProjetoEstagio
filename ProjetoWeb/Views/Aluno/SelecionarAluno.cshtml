@@ -16,23 +16,29 @@
 </div>
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Matricula)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sexo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nascimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CPF)
-        </th>
-    </tr>
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Matricula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPF)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <thead class="thead-light">
     @foreach (var item in Model)
     {
         <tr>
@@ -57,6 +63,7 @@
             </td>
         </tr>
     }
+    </thead>
 </table>
 
 <script defer>

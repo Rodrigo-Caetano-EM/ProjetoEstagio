@@ -106,17 +106,17 @@ namespace ProjetoWeb.Models
             {
                 return false;
             }
-
-            if (!Regex.IsMatch(nome, @"^[\p{L}\p{M}' \.\-]+$"))
+            if (!string.IsNullOrEmpty(nome))
             {
-                return false;
-            }
-
-            if (nome.Length < 1)
-            {
-                return false;
-            }
-            
+                if (!Regex.IsMatch(nome, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    return false;
+                }
+                if (nome.Length < 1)
+                {
+                    return false;
+                }
+            }   
             return true;
         }
         public static bool JaTemEsseCPF(string matricula, string cpf)

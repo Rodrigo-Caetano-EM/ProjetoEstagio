@@ -17,15 +17,14 @@
 
 @using (Html.BeginForm()) 
 {
+    <configuration>
+        <system.web>
+            <customErrors mode="On" defaultRedirect="ErrorPage.aspx?handler=customErrors%20section%20-%20Web.config">
+                <error statusCode="404" redirect="ErrorPage.aspx?msg=404&amp;handler=customErrors%20section%20-%20Web.config"/>
+            </customErrors>
+        </system.web>
+    </configuration>
     @Html.AntiForgeryToken()
-
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Erro!</strong> Preencha todos os dados obrigatórios!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @*Alerta para o erro em bootstrap*@
 
     <div class="form-horizontal">
         <h4>Adicionar Aluno</h4>
@@ -61,13 +60,13 @@
                         <th>
                             <br>
                             @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-sm" })<br>
-                            @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "btn-sm dropdown-toggle-split" })<br>
+                            @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Sexo, "*", new { @class = "text-danger" })
                         </th>
                         <th>
                             <br>
                             @Html.LabelFor(model => model.Nascimento, htmlAttributes: new { @class = "control-label col-md-2" })<br>
-                            @Html.EditorFor(model => model.Nascimento, new { htmlAttributes = new { @class = "form-control" }})
+                            @Html.EditorFor(model => model.Nascimento, new { htmlAttributes = new { @class = "form-control", @id = "textBoxNascimento" }})
                             @Html.ValidationMessageFor(model => model.Nascimento, "*", new { @class = "text-danger"})
                         </th>
                         <th>
@@ -118,7 +117,7 @@
             teste = true;
         }               
         if (teste){
-            $('.alert').alert()
+            alert("Erro! Preencha todos os dados obrigatórios")
         }
     }   
 </script>

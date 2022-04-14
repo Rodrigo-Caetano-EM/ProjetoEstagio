@@ -22,7 +22,6 @@ namespace ProjetoDeEstagio2
 
         [Required(ErrorMessage = "A data de nascimento é obrigatória", AllowEmptyStrings = false)]
         [DataType(DataType.Date, ErrorMessage = "erro")]
-        [Range(typeof(DateTime), "01/01/1920", "31/12/2021", ErrorMessage = "Idade inválida")]
         public DateTime Nascimento { get; set; }
         [Display(Name = "Sexo")]
         public EnumeradorSexo Sexo { get; set; }
