@@ -91,14 +91,17 @@ namespace ProjetoWeb.Models
         }
         public bool EhValido(string nome, DateTime nascimento)
         {
-            DateTime dataNascimentoMinima = new DateTime(1900, 01, 01, 00, 00, 00);
+            DateTime dataNascimentoMinima = new(1900, 01, 01, 00, 00, 00);
             DateTime dataDeTesteAluno = Convert.ToDateTime(nascimento);
             DateTime dataAtual = DateTime.Now;
             int CompararDatas = DateTime.Compare(dataNascimentoMinima, dataDeTesteAluno);
             int idade = dataAtual.Year - dataDeTesteAluno.Year;
-            if (CompararDatas > 0 || dataAtual.Year < dataDeTesteAluno.Year)
+            if (dataDeTesteAluno.Year >= dataAtual.Year)
             {
-                return false;
+                if (CompararDatas < 0 || dataAtual.Year < dataDeTesteAluno.Year)
+                {
+                    return false;
+                }
             }
             int mesNascimento = Convert.ToInt32(dataDeTesteAluno.Month) + 12;
             int mesAtual = Convert.ToInt32(dataAtual.Month) + 12;

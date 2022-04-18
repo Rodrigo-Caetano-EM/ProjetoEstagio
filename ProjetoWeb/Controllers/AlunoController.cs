@@ -29,17 +29,17 @@ namespace ProjetoWeb.Controllers
         {
             ValidarCPF(aluno);
             ValidarMatricula(aluno);
-            ValidarDataNascimento(aluno);
             ValidarNome(aluno);
+            ValidarDataNascimento(aluno.Nascimento);
             if (validacoes.EhValido(aluno.Nome, aluno.Nascimento))
             {
-                if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
+                if (!string.IsNullOrEmpty(aluno.CPF))
                 {
                     aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
                     repositorioAluno.Add(aluno);
                     return RedirectToAction("SelecionarAluno");
                 }
-                if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF))
+                if (string.IsNullOrEmpty(aluno.CPF))
                 {
                     repositorioAluno.Add(aluno);
                     return RedirectToAction("SelecionarAluno");
@@ -60,15 +60,14 @@ namespace ProjetoWeb.Controllers
         public ActionResult Edit([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
         {
             ValidarCPF(aluno);
-            ValidarDataNascimento(aluno);
             ValidarNome(aluno);
-            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF))
+            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento))
             {
                 aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
                 repositorioAluno.Update(aluno);
                 return RedirectToAction("SelecionarAluno");
             }
-            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF))
+            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento))
             {
                 repositorioAluno.Update(aluno);
                 return RedirectToAction("SelecionarAluno");
@@ -109,22 +108,25 @@ namespace ProjetoWeb.Controllers
             return RedirectToAction("SelecionarAluno");
         }
 
-        private void ValidarDataNascimento(Aluno aluno)
+        private void ValidarDataNascimento(DateTime nascimento)
         {
-            DateTime dataNascimentoMinima = new DateTime(1900, 01, 01, 00, 00, 00);
-            DateTime dataDeTesteAluno = Convert.ToDateTime(aluno.Nascimento);
+            DateTime dataNascimentoMinima = new(1900, 01, 01, 00, 00, 00);
+            DateTime dataDeTesteAluno = nascimento;
             DateTime dataAtual = DateTime.Now;
-            int CompararDatas = DateTime.Compare(dataNascimentoMinima, dataDeTesteAluno);
+            var CompararDatas = DateTime.Compare(dataNascimentoMinima, dataDeTesteAluno);
             int idade = dataAtual.Year - dataDeTesteAluno.Year;
-            if (CompararDatas > 0 || dataAtual.Year < dataDeTesteAluno.Year)
+            if(dataDeTesteAluno.Year >= dataAtual.Year)
             {
-                ModelState.AddModelError(String.Empty, "A data inserida é inválida");
+                if (CompararDatas < 0 || dataAtual.Year < dataDeTesteAluno.Year)
+                {
+                    ModelState.AddModelError(string.Empty, "Data inválida");
+                }
             }
             int mesNascimento = Convert.ToInt32(dataDeTesteAluno.Month) + 12;
             int mesAtual = Convert.ToInt32(dataAtual.Month) + 12;
             if (Math.Abs(mesAtual - mesNascimento) >= 7 && idade <= 1)
             {
-                ModelState.AddModelError(String.Empty, "Idade insuficiente");
+                ModelState.AddModelError(string.Empty, "Idade insuficiente");
             }
         }
         [HttpPost]

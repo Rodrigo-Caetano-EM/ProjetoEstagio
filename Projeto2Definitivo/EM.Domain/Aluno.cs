@@ -22,6 +22,7 @@ namespace ProjetoDeEstagio2
 
         [Required(ErrorMessage = "A data de nascimento é obrigatória", AllowEmptyStrings = false)]
         [DataType(DataType.Date, ErrorMessage = "erro")]
+        [Range(typeof(DateTime), "1/1/1900", "31/12/2020", ErrorMessage = "Não é possível cadastrar alunos nascidos antes de 1900 e a partir de 2021")]
         public DateTime Nascimento { get; set; }
         [Display(Name = "Sexo")]
         public EnumeradorSexo Sexo { get; set; }
