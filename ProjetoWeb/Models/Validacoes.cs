@@ -91,6 +91,18 @@ namespace ProjetoWeb.Models
         }
         public bool EhValido(string nome, DateTime nascimento)
         {
+            if (!string.IsNullOrEmpty(nome))
+            {
+                if (!Regex.IsMatch(nome, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    return false;
+                }
+
+                if (nome.Length < 1)
+                {
+                    return false;
+                }
+            }
             DateTime dataNascimentoMinima = new(1900, 01, 01, 00, 00, 00);
             DateTime dataDeTesteAluno = Convert.ToDateTime(nascimento);
             DateTime dataAtual = DateTime.Now;
