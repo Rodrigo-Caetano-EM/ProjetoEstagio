@@ -31,18 +31,18 @@ namespace ProjetoWeb.Controllers
             ImprimaMensagemMatricula(aluno);
             ImprimMensagemNome(aluno);
             ImprimaMensagemNascimento(aluno.Nascimento);
-            if (validacoes.EhValido(aluno.Nome, aluno.Nascimento))
+            if (validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 if (!string.IsNullOrEmpty(aluno.CPF))
                 {
                     aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
                     repositorioAluno.Add(aluno);
-                    return RedirectToAction("SelecionarAluno");
+                    return RedirectToAction("PesquisarAluno");
                 }
                 if (string.IsNullOrEmpty(aluno.CPF))
                 {
                     repositorioAluno.Add(aluno);
-                    return RedirectToAction("SelecionarAluno");
+                    return RedirectToAction("PesquisarAluno");
                 }
             }
             return View();
@@ -62,30 +62,21 @@ namespace ProjetoWeb.Controllers
             ImprimaMensagemCPF(aluno);
             ImprimMensagemNome(aluno);
             ImprimaMensagemNascimento(aluno.Nascimento);
-            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento))
+            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
                 repositorioAluno.Update(aluno);
-                return RedirectToAction("SelecionarAluno");
+                return RedirectToAction("PesquisarAluno");
             }
-            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento))
+            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 repositorioAluno.Update(aluno);
-                return RedirectToAction("SelecionarAluno");
+                return RedirectToAction("PesquisarAluno");
             }
             else
             {
                 return View(aluno);
             }
-        }
-
-        public bool ValidaOpcaoSexo(Sexo sexo)
-        {
-            if (sexo.CategoriaId == 0)
-            {
-                return false;
-            }
-            return true;
         }
 
         public ActionResult Delete(Aluno aluno)
@@ -101,77 +92,7 @@ namespace ProjetoWeb.Controllers
             Aluno alunoASerExcluido = repositorioAluno.GetByMatricula(aluno.Matricula);
             repositorioAluno.Remove(alunoASerExcluido);
 
-            return RedirectToAction("SelecionarAluno");
-        }
-
-        private void ImprimaMensagemNascimento(DateTime nascimento)
-        {
-            DateTime dataNascimentoMinima = new(1900, 01, 01, 00, 00, 00);
-            DateTime dataDeTesteAluno = nascimento;
-            DateTime dataAtual = DateTime.Now;
-            var CompararDatas = DateTime.Compare(dataNascimentoMinima, dataDeTesteAluno);
-            int idade = dataAtual.Year - dataDeTesteAluno.Year;
-            if(dataDeTesteAluno.Year >= dataAtual.Year)
-            {
-                if (CompararDatas < 0 || dataAtual.Year < dataDeTesteAluno.Year)
-                {
-                    ModelState.AddModelError(string.Empty, "Data inválida");
-                }
-            }
-            int mesNascimento = Convert.ToInt32(dataDeTesteAluno.Month) + 12;
-            int mesAtual = Convert.ToInt32(dataAtual.Month) + 12;
-            if (Math.Abs(mesAtual - mesNascimento) >= 7 && idade <= 1)
-            {
-                ModelState.AddModelError(string.Empty, "Idade insuficiente");
-            }
-        }
-        [HttpPost]
-        private void ImprimaMensagemCPF(Aluno aluno)
-        {
-            if (!string.IsNullOrEmpty(aluno.CPF))
-            {
-                if (!Validacoes.EhCPFValido(aluno.CPF))
-                {
-                    ModelState.AddModelError(string.Empty, "CPF inválido");
-                }
-                if (Validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
-                {
-                    ModelState.AddModelError(string.Empty, "CPF já inserido");
-                }
-            }
-        }
-        private void ImprimMensagemNome(Aluno aluno)
-        {
-            if (!string.IsNullOrEmpty(aluno.Nome))
-            {
-                if (!Regex.IsMatch(aluno.Nome, @"^[\p{L}\p{M}' \.\-]+$"))
-                {
-                    ModelState.AddModelError(string.Empty, "Nome inválido");
-                }
-
-                if (aluno.Nome.Length < 1)
-                {
-                    ModelState.AddModelError(string.Empty, "O nome precisa ser preenchido");
-                }
-            }
-        }
-
-        [HttpPost]
-        private void ImprimaMensagemMatricula(Aluno aluno)
-        {
-            int numeroDaMatricula = Convert.ToInt32(aluno.Matricula);
-
-            if (numeroDaMatricula <= 0)
-            {
-                ModelState.AddModelError(string.Empty, "Matricula inválida");
-            }
-            if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
-            {
-                if (Validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
-                {
-                    ModelState.AddModelError(string.Empty, "Matricula já inserida");
-                }
-            }
+            return RedirectToAction("PesquisarAluno");
         }
         [HttpPost]
         public ActionResult PesquisarAluno(string idInserido)
@@ -211,7 +132,86 @@ namespace ProjetoWeb.Controllers
                     }
                 }
             }
-            return RedirectToAction("SelecionarAluno", "Aluno");
+            return RedirectToAction("PesquisarAluno", "Aluno");
         }
+
+        private void ImprimaMensagemNascimento(DateTime nascimento)
+        {
+            DateTime dataNascimentoMinima = new(1900, 01, 01, 00, 00, 00);
+            DateTime dataAtual = DateTime.Now;
+            var CompararDatas = DateTime.Compare(dataNascimentoMinima, nascimento);
+            int idade = dataAtual.Year - nascimento.Year;
+            string tamanhoDoAno = nascimento.Year.ToString();
+            if(tamanhoDoAno.Length != 4)
+            {
+                ModelState.AddModelError(string.Empty, "Ano inválido");
+            }
+            else
+            {
+                if(nascimento.Year <= 1920 || nascimento.Year > Convert.ToInt32(DateTime.Now.AddMonths(-7).Year))
+                {
+                    ModelState.AddModelError(string.Empty, "Idade inválida");
+                }
+            }
+            if(nascimento.Year >= dataAtual.Year)
+            {
+                if (CompararDatas < 0 || dataAtual.Year < nascimento.Year)
+                {
+                    ModelState.AddModelError(string.Empty, "Data inválida");
+                }
+            }
+            int mesNascimento = Convert.ToInt32(nascimento.Month) + 12;
+            int mesAtual = Convert.ToInt32(dataAtual.Month) + 12;
+            if (Math.Abs(mesAtual - mesNascimento) >= 7 && idade <= 1)
+            {
+                ModelState.AddModelError(string.Empty, "Idade insuficiente");
+            }
+        }
+        private void ImprimaMensagemCPF(Aluno aluno)
+        {
+            if (!string.IsNullOrEmpty(aluno.CPF))
+            {
+                if (!Validacoes.EhCPFValido(aluno.CPF))
+                {
+                    ModelState.AddModelError(string.Empty, "CPF inválido");
+                }
+                if (Validacoes.JaTemEsseCPF(aluno.Matricula.ToString(), aluno.CPF))
+                {
+                    ModelState.AddModelError(string.Empty, "CPF já inserido");
+                }
+            }
+        }
+        private void ImprimMensagemNome(Aluno aluno)
+        {
+            if (!string.IsNullOrEmpty(aluno.Nome))
+            {
+                if (!Regex.IsMatch(aluno.Nome, @"^[\p{L}\p{M}' \.\-]+$"))
+                {
+                    ModelState.AddModelError(string.Empty, "Nome inválido");
+                }
+
+                if (aluno.Nome.Length < 1)
+                {
+                    ModelState.AddModelError(string.Empty, "O nome precisa ser preenchido");
+                }
+            }
+        }
+        private void ImprimaMensagemMatricula(Aluno aluno)
+        {
+            int numeroDaMatricula = Convert.ToInt32(aluno.Matricula);
+
+            if (numeroDaMatricula <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Matricula inválida");
+            }
+            if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
+            {
+                if (Validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
+                {
+                    ModelState.AddModelError(string.Empty, "Matricula já inserida");
+                }
+            }
+        }
+        
     }   
 }

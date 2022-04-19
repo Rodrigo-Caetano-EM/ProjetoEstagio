@@ -2,7 +2,7 @@
 i:{00000000-0000-0000-0000-000000000000}:Projeto2Definitivo.sln
 ++Projeto2Definitivo
 i:{00000000-0000-0000-0000-000000000000}:Projeto2Definitivo
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\projeto2definitivo.csproj
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\bin\debug\projeto2definitivo.exe
 ++Properties
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\properties\
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\properties\
@@ -10,18 +10,8 @@ i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\proje
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:
 ++EM.Domain
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.domain\
-++Aluno.cs
-i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.domain\aluno.cs
-++EnumeradorSexo.cs
-i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.domain\enumeradorsexo.cs
-++IEntidade.cs
-i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.domain\ientidade.cs
 ++EM.Repository
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.repository\
-++RepositorioAbstrato.cs
-i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.repository\repositorioabstrato.cs
-++RepositorioAluno.cs
-i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.repository\repositorioaluno.cs
 ++EM.WindowsForms
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.windowsforms\
 ++App1.config
@@ -66,6 +56,16 @@ i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:
 ++System.Xml.Linq
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:
+++Aluno.cs
+i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.domain\aluno.cs
+++EnumeradorSexo.cs
+i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.domain\enumeradorsexo.cs
+++IEntidade.cs
+i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.domain\ientidade.cs
+++RepositorioAbstrato.cs
+i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.repository\repositorioabstrato.cs
+++RepositorioAluno.cs
+i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.repository\repositorioaluno.cs
 ++Form1.cs
 i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\projetoestagio\projeto2definitivo\em.windowsforms\form1.cs
 ++Program.cs
@@ -84,13 +84,15 @@ i:{b5cf9d4c-87b2-411a-878e-998c6b7fbf37}:c:\users\escolarmanager\documents\proje
 ++ProjetoWeb
 i:{00000000-0000-0000-0000-000000000000}:ProjetoWeb
 ++Connected Services 
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>897
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>903
 ++Dependencies
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>896
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>902
 ++wwwroot
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\
 ++App_Start
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\app_start\
+++RouteConfig.cs
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\app_start\routeconfig.cs
 ++Controllers
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\controllers\
 ++AlunoController.cs
@@ -109,32 +111,19 @@ i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\proje
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\
 ++Aluno
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\
-++AdicionarAluno.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\adicionaraluno.cshtml
-++AtualizarAluno.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\atualizaraluno.cshtml
+++Create.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\create.cshtml
 ++Delete.cshtml
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\delete.cshtml
 ++DropDownList.cs
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\dropdownlist.cs
+++Edit.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\edit.cshtml
 ++SelecionarAluno.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\selecionaraluno.cshtml
 ++Home
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\home\
-++Index.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\home\index.cshtml
-++Privacy.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\home\privacy.cshtml
 ++Shared
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\
-++_Layout.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\_layout.cshtml
-++_ValidationScriptsPartial.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\_validationscriptspartial.cshtml
-++Error.cshtml
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\error.cshtml
-++logo.jpg
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\logo.jpg
 ++_ViewImports.cshtml
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\_viewimports.cshtml
 ++_ViewStart.cshtml
@@ -142,7 +131,7 @@ i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\proje
 ++appsettings.json
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\appsettings.json
 ++SQL Server Express LocalDB (Local) (ConnectionStrings:ProjetoWebContextConnection)
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>932
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>933
 ++Analyzers
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:analyzers
 ++Frameworks
@@ -165,58 +154,66 @@ i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\proje
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\lib\
 ++favicon.ico
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\favicon.ico
-++RouteConfig.cs
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\app_start\routeconfig.cs
-++_Layout.cshtml.css
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\_layout.cshtml.css
+++Index.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\home\index.cshtml
+++Privacy.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\home\privacy.cshtml
+++_Layout.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\_layout.cshtml
+++_ValidationScriptsPartial.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\_validationscriptspartial.cshtml
+++Error.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\error.cshtml
+++logo.jpg
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\logo.jpg
 ++appsettings.Development.json
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\appsettings.development.json
 ++MessagePackAnalyzer
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\.nuget\packages\messagepackanalyzer\2.1.152\analyzers\dotnet\messagepackanalyzer.dll
 ++Microsoft.AspNetCore.Analyzers
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
 ++Microsoft.AspNetCore.App.Analyzers
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.2\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
 ++Microsoft.AspNetCore.App.CodeFixes
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.2\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
 ++Microsoft.AspNetCore.Components.Analyzers
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
 ++Microsoft.AspNetCore.Mvc.Analyzers
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
-++Microsoft.AspNetCore.Razor.Internal.SourceGenerator.Transport
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.internal.sourcegenerator.transport.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
 ++Microsoft.CodeAnalysis.Analyzers
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
 ++Microsoft.CodeAnalysis.CSharp.Analyzers
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
 ++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 ++Microsoft.CodeAnalysis.NetAnalyzers
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 ++Microsoft.EntityFrameworkCore.Analyzers
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.2\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
 ++Microsoft.Extensions.Logging.Generators
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.2\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
 ++Microsoft.NET.Sdk.Razor.SourceGenerators
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
 ++System.Text.Json.SourceGeneration
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.2\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
 ++Microsoft.AspNetCore.App
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\microsoft.aspnetcore.app
 ++Microsoft.NETCore.App
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\microsoft.netcore.app
 ++FirebirdSql.Data.FirebirdClient (8.5.4)
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>910
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>926
 ++Microsoft.AspNetCore.Identity.EntityFrameworkCore (6.0.2)
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>911
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>927
 ++Microsoft.AspNetCore.Identity.UI (6.0.2)
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>914
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>930
 ++Microsoft.EntityFrameworkCore.SqlServer (6.0.2)
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>909
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>925
 ++Microsoft.EntityFrameworkCore.Tools (6.0.2)
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>912
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>928
 ++Microsoft.VisualStudio.Web.CodeGeneration.Design (6.0.2)
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>913
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:>929
 ++serviceDependencies.local.json
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\properties\servicedependencies.local.json
 ++site.css
@@ -231,6 +228,8 @@ i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\proje
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\lib\jquery-validation\
 ++jquery-validation-unobtrusive
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\lib\jquery-validation-unobtrusive\
+++_Layout.cshtml.css
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\shared\_layout.cshtml.css
 ++dist
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\lib\bootstrap\dist\
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\lib\jquery\dist\
@@ -348,5 +347,5 @@ i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\proje
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
 ++bootstrap.esm.min.js.map
 i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-++StyleSheet.css
-i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\stylesheet.css
+++PesquisarAluno.cshtml
+i:{55d73086-bfab-46a8-9a10-f802b102bef8}:c:\users\escolarmanager\documents\projetoestagio\projetoweb\views\aluno\pesquisaraluno.cshtml

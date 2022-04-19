@@ -6,10 +6,14 @@ namespace ProjetoWeb.Models
 {
     public class Validacoes
     {
-        RepositorioAluno repositorioAluno = new();
         public static bool EhCPFValido(string cpf)
         {
             string valor = cpf.Replace(".", "").Replace("-", "");
+
+            if (!Regex.IsMatch(valor, @"(?:\.|,|[0-9])*") && !string.IsNullOrEmpty(valor))
+            {
+                return false;
+            }
 
             if (valor.Length != 11)
             {
@@ -89,8 +93,27 @@ namespace ProjetoWeb.Models
             }
             return true;
         }
-        public bool EhValido(string nome, DateTime nascimento)
+        public bool EhValido(string nome, DateTime nascimento, string cpf)
         {
+            string tamanhoDoAno = nascimento.Year.ToString();
+            if (tamanhoDoAno.Length != 4)
+            {
+                return false;
+            }
+            else
+            {
+                if (nascimento.Year <= 1920 || nascimento.Year > Convert.ToInt32(DateTime.Now.AddMonths(-7).Year))
+                {
+                    return false;
+                }
+            }
+            if (!string.IsNullOrEmpty(cpf))
+            {
+                if (!EhCPFValido(cpf))
+                {
+                    return false;
+                }
+            }
             if (!string.IsNullOrEmpty(nome))
             {
                 if (!Regex.IsMatch(nome, @"^[\p{L}\p{M}' \.\-]+$"))
