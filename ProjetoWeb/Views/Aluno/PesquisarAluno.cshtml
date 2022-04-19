@@ -6,11 +6,11 @@
 <p>@Html.ActionLink("Adicionar novo Aluno", "Create")</p>
 
 <div>
-    <form asp-controller="Aluno" asp-action="SelecionarAluno" method = "post">
+    <form asp-controller="Aluno" asp-action="PesquisarAluno" method = "post">
     <p>
         Pesquisar: <input type="text" name="idInserido" id="Pesquisa"/>
         <input type="submit" class="btn btn-primary" value="Pesquisar" id="btnPesquisa" disabled/>
-        <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("SelecionarAluno", "Aluno")'" />
+        <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("PesquisarAluno", "Aluno")'" />
     </p>
     </form>    
 </div>

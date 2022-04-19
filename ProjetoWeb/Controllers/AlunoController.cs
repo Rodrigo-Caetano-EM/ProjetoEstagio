@@ -8,10 +8,10 @@ namespace ProjetoWeb.Controllers
 {
     public class AlunoController : Controller
     {
-        RepositorioAluno repositorioAluno = new();
-        Validacoes validacoes = new();
+        readonly RepositorioAluno repositorioAluno = new();
+        readonly Validacoes validacoes = new();
 
-        public ActionResult SelecionarAluno()
+        public ActionResult PesquisarAluno()
         {
             ModelState.Clear();
 
@@ -27,10 +27,10 @@ namespace ProjetoWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Aluno aluno)
         {
-            ValidarCPF(aluno);
-            ValidarMatricula(aluno);
-            ValidarNome(aluno);
-            ValidarDataNascimento(aluno.Nascimento);
+            ImprimaMensagemCPF(aluno);
+            ImprimaMensagemMatricula(aluno);
+            ImprimMensagemNome(aluno);
+            ImprimaMensagemNascimento(aluno.Nascimento);
             if (validacoes.EhValido(aluno.Nome, aluno.Nascimento))
             {
                 if (!string.IsNullOrEmpty(aluno.CPF))
@@ -50,17 +50,18 @@ namespace ProjetoWeb.Controllers
 
         public ActionResult Edit(int matricula)
         {
-            Aluno teste = repositorioAluno.GetByMatricula(matricula);
+            Aluno alunoASerEditado = repositorioAluno.GetByMatricula(matricula);
 
-            return View(teste);
+            return View(alunoASerEditado);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(include: "Matricula, Nome, Sexo, Nascimento, CPF")] Aluno aluno)
         {
-            ValidarCPF(aluno);
-            ValidarNome(aluno);
+            ImprimaMensagemCPF(aluno);
+            ImprimMensagemNome(aluno);
+            ImprimaMensagemNascimento(aluno.Nascimento);
             if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento))
             {
                 aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
@@ -78,7 +79,7 @@ namespace ProjetoWeb.Controllers
             }
         }
 
-        public bool ValidarSexo(Sexo sexo)
+        public bool ValidaOpcaoSexo(Sexo sexo)
         {
             if (sexo.CategoriaId == 0)
             {
@@ -86,16 +87,11 @@ namespace ProjetoWeb.Controllers
             }
             return true;
         }
-        
+
         public ActionResult Delete(Aluno aluno)
         {
             Aluno alunoASerExcluido = repositorioAluno.GetByMatricula(aluno.Matricula);
 
-            if (alunoASerExcluido == null)
-            {
-                ViewBag.Message = "Aluno não foi encontrado";
-                return RedirectToAction("SelecionarAluno");
-            }
             return View(alunoASerExcluido);
         }
 
@@ -108,7 +104,7 @@ namespace ProjetoWeb.Controllers
             return RedirectToAction("SelecionarAluno");
         }
 
-        private void ValidarDataNascimento(DateTime nascimento)
+        private void ImprimaMensagemNascimento(DateTime nascimento)
         {
             DateTime dataNascimentoMinima = new(1900, 01, 01, 00, 00, 00);
             DateTime dataDeTesteAluno = nascimento;
@@ -130,7 +126,7 @@ namespace ProjetoWeb.Controllers
             }
         }
         [HttpPost]
-        private void ValidarCPF(Aluno aluno)
+        private void ImprimaMensagemCPF(Aluno aluno)
         {
             if (!string.IsNullOrEmpty(aluno.CPF))
             {
@@ -144,7 +140,7 @@ namespace ProjetoWeb.Controllers
                 }
             }
         }
-        private void ValidarNome(Aluno aluno)
+        private void ImprimMensagemNome(Aluno aluno)
         {
             if (!string.IsNullOrEmpty(aluno.Nome))
             {
@@ -161,7 +157,7 @@ namespace ProjetoWeb.Controllers
         }
 
         [HttpPost]
-        private void ValidarMatricula(Aluno aluno)
+        private void ImprimaMensagemMatricula(Aluno aluno)
         {
             int numeroDaMatricula = Convert.ToInt32(aluno.Matricula);
 
@@ -178,9 +174,8 @@ namespace ProjetoWeb.Controllers
             }
         }
         [HttpPost]
-        public ActionResult SelecionarAluno(string idInserido)
+        public ActionResult PesquisarAluno(string idInserido)
         {
-            var falha = false;
             if (!string.IsNullOrEmpty(idInserido))
             {
                 if (int.TryParse(idInserido, out int Pesquisa))
@@ -195,7 +190,9 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        falha = true;
+                        IEnumerable<Aluno> alunos = repositorioAluno.GetAll();
+
+                        return View(alunos);
                     }
                 }
                 else if (repositorioAluno.GetByNome(idInserido).Any())
@@ -208,17 +205,11 @@ namespace ProjetoWeb.Controllers
                     }
                     catch
                     {
-                        falha = true;
+                        IEnumerable<Aluno> alunos = repositorioAluno.GetAll();
+
+                        return View(alunos);
                     }
                 }
-                else
-                {
-                        falha = true;
-                }
-            }
-            if (falha)
-            {
-                ModelState.AddModelError(string.Empty, "Aluno não encontrado");
             }
             return RedirectToAction("SelecionarAluno", "Aluno");
         }
