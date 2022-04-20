@@ -38,12 +38,12 @@
                 <table>
                     <tr>
                         <th>
-                            @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "9"}})
+                            @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "9", @autocomplete="off"}})
                             @Html.ValidationMessageFor(model => model.Matricula, "*", new { @class = "text-danger" })<br>
                         </th>
                         <th>
-                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-10" })
+                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
                             @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Nome, "*", new { @class = "text-danger" })<br>
                         </th>
@@ -58,19 +58,19 @@
                     <tr>
                         <th>
                             <br>
-                            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-sm" })<br>
+                            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label" })<br>
                             @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "form-control", @id = "dropDownList"})
                             @Html.ValidationMessageFor(model => model.Sexo, "*", new { @class = "text-danger" })
                         </th>
                         <th>
                             <br>
-                            @Html.LabelFor(model => model.Nascimento, htmlAttributes: new { @class = "control-label col-md-2" })<br>
+                            @Html.LabelFor(model => model.Nascimento, htmlAttributes: new { @class = "control-label" })<br>
                             @Html.EditorFor(model => model.Nascimento, new { htmlAttributes = new { @class = "form-control", @id = "textBoxNascimento" }})
                             @Html.ValidationMessageFor(model => model.Nascimento, "*", new { @class = "text-danger"})
                         </th>
                         <th>
-                            @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })          
-                            @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "15" } })
+                            @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label" })          
+                            @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "15",  @autocomplete="off" } })
                             @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger"})
                         </th>
                     </tr>

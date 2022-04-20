@@ -31,19 +31,22 @@ namespace ProjetoWeb.Controllers
             ImprimaMensagemMatricula(aluno);
             ImprimMensagemNome(aluno);
             ImprimaMensagemNascimento(aluno.Nascimento);
-            if (validacoes.EhValido(aluno.Matricula, aluno.Nome, aluno.Nascimento, aluno.CPF))
+            if (validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
-                if (!string.IsNullOrEmpty(aluno.CPF))
+                if(!validacoes.JaTemEssaMatricula(aluno.Matricula))
                 {
-                    aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
-                    repositorioAluno.Add(aluno);
-                    return RedirectToAction("PesquisarAluno");
-                }
-                if (string.IsNullOrEmpty(aluno.CPF))
-                {
-                    repositorioAluno.Add(aluno);
-                    return RedirectToAction("PesquisarAluno");
-                }
+                    if (!string.IsNullOrEmpty(aluno.CPF))
+                    {
+                        aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
+                        repositorioAluno.Add(aluno);
+                        return RedirectToAction("PesquisarAluno");
+                    }
+                    if (string.IsNullOrEmpty(aluno.CPF))
+                    {
+                        repositorioAluno.Add(aluno);
+                        return RedirectToAction("PesquisarAluno");
+                    }
+                }               
             }
             return View();
         }
@@ -62,13 +65,13 @@ namespace ProjetoWeb.Controllers
             ImprimaMensagemCPF(aluno);
             ImprimMensagemNome(aluno);
             ImprimaMensagemNascimento(aluno.Nascimento);
-            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Matricula, aluno.Nome, aluno.Nascimento, aluno.CPF))
+            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
                 repositorioAluno.Update(aluno);
                 return RedirectToAction("PesquisarAluno");
             }
-            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Matricula, aluno.Nome, aluno.Nascimento, aluno.CPF))
+            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 repositorioAluno.Update(aluno);
                 return RedirectToAction("PesquisarAluno");
@@ -141,7 +144,7 @@ namespace ProjetoWeb.Controllers
             DateTime dataNascimentoMinima = new(1900, 01, 01, 00, 00, 00);
             DateTime dataAtual = DateTime.Now;
             var CompararDatas = DateTime.Compare(dataNascimentoMinima, nascimento);
-            int idade = dataAtual.Year - nascimento.Year;
+            int ComparaAno = dataAtual.Year - nascimento.Year;
             string tamanhoDoAno = nascimento.Year.ToString();
             if(tamanhoDoAno.Length != 4)
             {
@@ -154,11 +157,14 @@ namespace ProjetoWeb.Controllers
                     ModelState.AddModelError(string.Empty, "Data inválida");
                 }
             }
-            int mesNascimento = Convert.ToInt32(nascimento.Month) + 12;
-            int mesAtual = Convert.ToInt32(dataAtual.Month) + 12;
-            if (Math.Abs(mesAtual - mesNascimento) <= 7)
+            if(ComparaAno <= 1)
             {
-                ModelState.AddModelError(string.Empty, "O usuário inserido não apresenta a idade no intervalo permitido: 6 meses - 100 anos");
+                TimeSpan testeTempoDecorrido = DateTime.Now - nascimento;
+                float qntdMeses = testeTempoDecorrido.Days / 30;
+                if (qntdMeses < 6)
+                {
+                    ModelState.AddModelError(string.Empty, "Idade insuficiente");
+                }
             }
         }
         private void ImprimaMensagemCPF(Aluno aluno)
@@ -200,7 +206,7 @@ namespace ProjetoWeb.Controllers
             }
             if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
             {
-                if (Validacoes.JaTemEssaMatricula(aluno.Matricula.ToString()))
+                if (validacoes.JaTemEssaMatricula(aluno.Matricula))
                 {
                     ModelState.AddModelError(string.Empty, "Matricula já inserida");
                 }

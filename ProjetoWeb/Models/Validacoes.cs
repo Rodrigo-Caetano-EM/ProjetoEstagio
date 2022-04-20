@@ -93,21 +93,8 @@ namespace ProjetoWeb.Models
             }
             return true;
         }
-        public bool EhValido(int matricula, string nome, DateTime nascimento, string cpf)
+        public bool EhValido(string nome, DateTime nascimento, string cpf)
         {
-            int numeroDaMatricula = Convert.ToInt32(matricula);
-
-            if (numeroDaMatricula <= 0)
-            {
-                return false;
-            }
-            if (!string.IsNullOrEmpty(matricula.ToString()))
-            {
-                if (Validacoes.JaTemEssaMatricula(matricula.ToString()))
-                {
-                    return false;
-                }
-            }
             string tamanhoDoAno = nascimento.Year.ToString();
             if (tamanhoDoAno.Length != 4)
             {
@@ -185,11 +172,13 @@ namespace ProjetoWeb.Models
                 return alunos.Any();
             }
         }
-        public static bool JaTemEssaMatricula(string matricula)
+        public bool JaTemEssaMatricula(int matricula)
         {
             RepositorioAluno repositorioAluno = new();
 
-            if (matricula == String.Empty)
+            string stringMatricula = Convert.ToString(matricula);
+
+            if (stringMatricula == String.Empty)
             {
                 return false;
             }
