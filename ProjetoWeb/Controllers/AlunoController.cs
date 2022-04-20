@@ -148,7 +148,7 @@ namespace ProjetoWeb.Controllers
             string tamanhoDoAno = nascimento.Year.ToString();
             if(tamanhoDoAno.Length != 4)
             {
-                ModelState.AddModelError(string.Empty, "Data inválida");
+                ModelState.AddModelError(string.Empty, "Digite uma data de nascimento válida");
             }
             if(nascimento.Year > dataAtual.Year)
             {
@@ -192,16 +192,15 @@ namespace ProjetoWeb.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "O nome precisa ser preenchido");
+                ModelState.AddModelError(string.Empty, "Digite um nome válido");
             }
         }
         private void ImprimaMensagemMatricula(Aluno aluno)
         {
             int numeroDaMatricula = Convert.ToInt32(aluno.Matricula);
-
             if (numeroDaMatricula <= 0)
             {
-                ModelState.AddModelError(string.Empty, "Matricula inválida");
+                ModelState.AddModelError(string.Empty, "Digite uma matricula válida");
             }
             if (!string.IsNullOrEmpty(aluno.Matricula.ToString()))
             {
