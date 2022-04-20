@@ -54,7 +54,7 @@
     @using (Html.BeginForm()){
     <form asp-action="Delete">
         <input type="submit" value="Excluir" class="btn btn-danger" /> 
-        <input type="button" value="Voltar" class="btn btn-secondary" onclick="location.href='@Url.Action("SelecionarAluno", "Aluno")'">
+        <input type="button" value="Voltar" class="btn btn-secondary" onclick="location.href='@Url.Action("PesquisarAluno", "Aluno")'">
     </form>
     }
 </div>

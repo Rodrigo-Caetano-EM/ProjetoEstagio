@@ -50,7 +50,7 @@
         <h4>Atualizar Aluno</h4>
         <hr/>
         <div>
-            @Html.ActionLink("Voltar para a lista", "SelecionarAluno")
+            @Html.ActionLink("Voltar para a lista", "PesquisarAluno")
         </div>
        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -99,7 +99,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Atualizar" class="btn btn-success" onclick="checaCamposVazios()" />
-                <input type="button" class="btn btn-secondary" value="Voltar" onclick="location.href='@Url.Action("SelecionarAluno")'" />
+                <input type="button" class="btn btn-secondary" value="Voltar" onclick="location.href='@Url.Action("PesquisarAluno")'" />
             </div>
         </div>
     </div>

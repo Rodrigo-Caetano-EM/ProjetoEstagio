@@ -94,7 +94,7 @@
                 document.getElementById("btnPesquisa").disabled = true;
             }
             if(conteudo == "" || conteudo == null && document.getElementById("btnPesquisa").disabled){
-                window.location.href = '@Url.Action("SelecionarAluno", "Aluno")';
+                window.location.href = '@Url.Action("PesquisarAluno", "Aluno")';
             }
             
         });
