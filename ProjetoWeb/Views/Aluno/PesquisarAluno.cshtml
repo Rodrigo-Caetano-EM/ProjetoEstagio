@@ -2,20 +2,32 @@
 @using ProjetoDeEstagio2
 @model IEnumerable<Aluno>
 
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 <p>@Html.ActionLink("Adicionar novo Aluno", "Create")</p>
 
 <div>
     <form asp-controller="Aluno" asp-action="PesquisarAluno" method = "post">
-    <p>
-        Pesquisar: <input type="text" name="idInserido" id="Pesquisa"/>
-        <input type="submit" class="btn btn-primary" value="Pesquisar" id="btnPesquisa" disabled/>
-        <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("PesquisarAluno", "Aluno")'" />
-    </p>
+        <div class="row">
+            <div class="col-3">
+                Pesquisar: <input type="text" name="idInserido" class="form-control" id="Pesquisa"/>
+            </div>
+            <div class="col">
+                <br />
+                <input type="submit" class="btn btn-primary" value="Pesquisar" id="btnPesquisa" disabled/>
+                <input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='@Url.Action("PesquisarAluno", "Aluno")'" />
+            </div>
+        </div>
     </form>    
 </div>
+<br />
 
-<table class="table">
+<table class="table table-striped">
     <thead class="thead-dark">
         <tr>
             <th>

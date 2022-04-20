@@ -31,7 +31,7 @@ namespace ProjetoWeb.Controllers
             ImprimaMensagemMatricula(aluno);
             ImprimMensagemNome(aluno);
             ImprimaMensagemNascimento(aluno.Nascimento);
-            if (validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
+            if (validacoes.EhValido(aluno.Matricula, aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 if (!string.IsNullOrEmpty(aluno.CPF))
                 {
@@ -62,13 +62,13 @@ namespace ProjetoWeb.Controllers
             ImprimaMensagemCPF(aluno);
             ImprimMensagemNome(aluno);
             ImprimaMensagemNascimento(aluno.Nascimento);
-            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
+            if (ModelState.IsValid && !string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Matricula, aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 aluno.CPF = aluno.CPF.Replace(".", "").Replace("-", "");
                 repositorioAluno.Update(aluno);
                 return RedirectToAction("PesquisarAluno");
             }
-            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Nome, aluno.Nascimento, aluno.CPF))
+            if (ModelState.IsValid && string.IsNullOrEmpty(aluno.CPF) && validacoes.EhValido(aluno.Matricula, aluno.Nome, aluno.Nascimento, aluno.CPF))
             {
                 repositorioAluno.Update(aluno);
                 return RedirectToAction("PesquisarAluno");
@@ -87,6 +87,7 @@ namespace ProjetoWeb.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Aluno aluno)
         {
             Aluno alunoASerExcluido = repositorioAluno.GetByMatricula(aluno.Matricula);
@@ -146,14 +147,7 @@ namespace ProjetoWeb.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Ano inválido");
             }
-            else
-            {
-                if(nascimento.Year <= 1920 || nascimento.Year > Convert.ToInt32(DateTime.Now.AddMonths(-7).Year))
-                {
-                    ModelState.AddModelError(string.Empty, "Idade inválida");
-                }
-            }
-            if(nascimento.Year >= dataAtual.Year)
+            if(nascimento.Year > dataAtual.Year)
             {
                 if (CompararDatas < 0 || dataAtual.Year < nascimento.Year)
                 {
@@ -162,9 +156,9 @@ namespace ProjetoWeb.Controllers
             }
             int mesNascimento = Convert.ToInt32(nascimento.Month) + 12;
             int mesAtual = Convert.ToInt32(dataAtual.Month) + 12;
-            if (Math.Abs(mesAtual - mesNascimento) >= 7 && idade <= 1)
+            if (Math.Abs(mesAtual - mesNascimento) <= 7)
             {
-                ModelState.AddModelError(string.Empty, "Idade insuficiente");
+                ModelState.AddModelError(string.Empty, "O usuário inserido não apresenta a idade no intervalo permitido: 6 meses - 100 anos");
             }
         }
         private void ImprimaMensagemCPF(Aluno aluno)

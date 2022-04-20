@@ -10,7 +10,7 @@ namespace ProjetoWeb.Models
         {
             string valor = cpf.Replace(".", "").Replace("-", "");
 
-            if (!Regex.IsMatch(valor, @"(?:\.|,|[0-9])*") && !string.IsNullOrEmpty(valor))
+            if (int.TryParse(valor, out int cpfnumerico))
             {
                 return false;
             }
@@ -93,8 +93,21 @@ namespace ProjetoWeb.Models
             }
             return true;
         }
-        public bool EhValido(string nome, DateTime nascimento, string cpf)
+        public bool EhValido(int matricula, string nome, DateTime nascimento, string cpf)
         {
+            int numeroDaMatricula = Convert.ToInt32(matricula);
+
+            if (numeroDaMatricula <= 0)
+            {
+                return false;
+            }
+            if (!string.IsNullOrEmpty(matricula.ToString()))
+            {
+                if (Validacoes.JaTemEssaMatricula(matricula.ToString()))
+                {
+                    return false;
+                }
+            }
             string tamanhoDoAno = nascimento.Year.ToString();
             if (tamanhoDoAno.Length != 4)
             {
