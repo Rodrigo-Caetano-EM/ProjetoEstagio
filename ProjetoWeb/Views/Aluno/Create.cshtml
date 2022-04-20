@@ -39,12 +39,12 @@
                     <tr>
                         <th>
                             @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "9", @autocomplete="off"}})
+                            @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @maxlength = "9", @autocomplete="off", @id="Matricula"}})
                             @Html.ValidationMessageFor(model => model.Matricula, "*", new { @class = "text-danger" })<br>
                         </th>
                         <th>
                             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @id="Nome" } })
                             @Html.ValidationMessageFor(model => model.Nome, "*", new { @class = "text-danger" })<br>
                         </th>
                     </tr>
@@ -59,7 +59,7 @@
                         <th>
                             <br>
                             @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label" })<br>
-                            @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "form-control", @id = "dropDownList"})
+                            @Html.DropDownListFor(model => model.Sexo, listaDeSexos, new { @class = "form-control", @id = "dropDownList",})
                             @Html.ValidationMessageFor(model => model.Sexo, "*", new { @class = "text-danger" })
                         </th>
                         <th>
@@ -108,13 +108,7 @@
         }               
         if(document.getElementById("Nome").value.length == 0){
             teste = true;
-        }
-        if(document.getElementById("Sexo").value == 0){
-            teste = true;
-        }
-        if(document.getElementById("Nascimento").value.length == 0){           
-            teste = true;
-        }               
+        }             
         if (teste){
             alert("Erro! Preencha todos os dados obrigatórios")
         }
