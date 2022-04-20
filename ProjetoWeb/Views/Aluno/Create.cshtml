@@ -108,7 +108,10 @@
         }               
         if(document.getElementById("Nome").value.length == 0){
             teste = true;
-        }             
+        }
+        if(document.getElementById("textBoxNascimento").value == ""){
+            teste = true;
+        }
         if (teste){
             alert("Erro! Preencha todos os dados obrigatórios")
         }
